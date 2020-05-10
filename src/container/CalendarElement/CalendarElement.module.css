@@ -1,0 +1,7 @@
+.CalendarEl {
+  border: 1px solid #ccc;
+  border-top: none;
+  width: 100%;
+  height: 110px;
+  text-align: center;
+}

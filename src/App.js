@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 import Layout from './hoc/Layout/Layout';
-import CalendarBoard from './components/CalendarBoard/CalendarBoard';
+import CalendarBoard from './container/CalendarBoard/CalendarBoard';
 
 function App() {
   return (
