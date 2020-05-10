@@ -1,0 +1,9 @@
+.Navbar ul {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+}
+
+.Navbar li {
+  margin: 0 16px;
+}
