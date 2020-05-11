@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './store/reducers/calendarElement';
+
+const store = createStore(reducer)
+
+const app = <Provider store={store}><App /></Provider>
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  app,
   document.getElementById('root')
 );
 
