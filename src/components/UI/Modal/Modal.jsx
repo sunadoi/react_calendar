@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 
 import classes from './Modal.module.css';
 
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
+
 const Modal = (props) => {
-  const [open, setOpen] = useState(true);
-
-  useEffect(() => {
-    if (props.close) {
-      setOpen(false);
-    }
-  }, [props.close])
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <div>
       <Dialog
-        open={open}
-        onClose={handleClose}
+        open={props.showModal}
+        onClose={() => props.closeModal()}
         aria-labelledby="form-dialog-title"
         className={classes.Modal}
       >
@@ -30,4 +21,16 @@ const Modal = (props) => {
   );
 }
 
-export default Modal;
+const mapStateToProps = state => {
+  return {
+    showModal: state.showModal
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    closeModal: () => dispatch(actions.closeModal())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
