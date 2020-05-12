@@ -10,15 +10,10 @@ import SubjectIcon from '@material-ui/icons/Subject';
 import Modal from '../../components/UI/Modal/Modal';
 import classes from './AddSchedule.module.css';
 
-class AddSchedule extends Component {
-  state = {
-    close: false
-  }
-  
-  handleClose = () => {
-    this.setState({close: true});
-  };
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
+class AddSchedule extends Component {
   render() {
     const dialogContent = (
       <DialogContent>
@@ -28,6 +23,7 @@ class AddSchedule extends Component {
           margin="dense"
           fullWidth
           size='medium'
+          name='title'
         />
         <div>
           <AccessTimeIcon />
@@ -35,6 +31,7 @@ class AddSchedule extends Component {
             placeholder="日時を追加"
             margin="dense"
             size='medium'
+            name='date'
           />
         </div>
         <div>
@@ -43,6 +40,7 @@ class AddSchedule extends Component {
             placeholder="場所を追加"
             margin="dense"
             size='medium'
+            name='place'
           />
         </div>
         <div>
@@ -51,22 +49,19 @@ class AddSchedule extends Component {
             placeholder="説明を追加"
             margin="dense"
             size='medium'
+            name='description'
           />
         </div>
       </DialogContent>
     )
 
     return (
-      <Modal close={this.state.close}>
+      <Modal>
         <div className={classes.AddSchedule}>
           {dialogContent}
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Subscribe
-            </Button>
+            <Button onClick={() => this.props.closeModal()} color="primary">戻る</Button>
+            <Button onClick={() => this.props.closeModal()} color="primary">保存</Button>
           </DialogActions>
         </div>
       </Modal>
@@ -74,4 +69,10 @@ class AddSchedule extends Component {
   }
 }
 
-export default AddSchedule;
+const mapDispatchToProps = dispatch => {
+  return {
+    closeModal: () => dispatch(actions.closeModal())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddSchedule);
