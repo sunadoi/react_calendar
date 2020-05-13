@@ -11,8 +11,9 @@ class CalendarElement extends Component {
   render () {
     return (
       <div className={classes.CalendarEl} onClick={() => this.props.openModal()}>
-        <h1>1</h1>
-        <Schedule />
+        {this.props.date.getDate()}
+        {/* <p>1</p> */}
+        <Schedule day={this.props.date} />
       </div>
     )
   }

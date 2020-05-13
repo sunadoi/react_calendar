@@ -8,4 +8,8 @@ class Schedule extends Component {
   }
 }
 
+
+//scheduleというreducerを作ってそこで日付と予定を管理する
+//this.props.dayとreduxのscheduleの日付が一致すればその予定をrenderする
+
 export default Schedule;

@@ -7,7 +7,8 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const navbar = props => {
-  const today = new Date().getDate()
+  const today = new Date();
+  const yearMonth = `${today.getFullYear()}年${today.getMonth() + 1}月`
 
   return (
     <div className={classes.Navbar}>
@@ -17,7 +18,7 @@ const navbar = props => {
         <li>カレンダー</li>
         <li><ArrowBackIosIcon /></li>
         <li><ArrowForwardIosIcon /></li>
-        <li>{today}</li>
+        <li>{yearMonth}</li>
       </ul>
     </div>
   )
