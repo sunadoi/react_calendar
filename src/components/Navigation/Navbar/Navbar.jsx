@@ -8,9 +8,11 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Button from '@material-ui/core/Button';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 const Navbar = props => {
-  const [yearMonth, setYearMonth] = useState('');
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
     props.onFetchToday();
@@ -18,7 +20,7 @@ const Navbar = props => {
 
   useEffect(() => {
     if (props.date) {
-      setYearMonth(`${props.date.getFullYear()}年${props.date.getMonth() + 1}月`)
+      setSelectedDate(props.date)
     }
   }, [props.date])
 
@@ -30,6 +32,12 @@ const Navbar = props => {
     props.onNextMonth()
   }
 
+  const CustomInput = ({ onClick }) => (
+    <Button className="custom-input" onClick={onClick}>
+      {`${selectedDate.getFullYear()}年${selectedDate.getMonth() + 1}月`}
+    </Button>
+  );
+
   return (
     <div className={classes.Navbar}>
       <ul>
@@ -39,7 +47,11 @@ const Navbar = props => {
         <li><Button variant="outlined" onClick={() => props.onFetchToday()} >今日</Button></li>
         <li><ArrowBackIosIcon onClick={() => onPreviousMonthHandler()} /></li>
         <li><ArrowForwardIosIcon onClick={() => onNextMonthHandler()} /></li>
-        <li>{yearMonth}</li>
+        <DatePicker
+          selected={selectedDate}
+          onChange={date => setSelectedDate(date)}
+          customInput = {<CustomInput />}
+        />
       </ul>
     </div>
   )

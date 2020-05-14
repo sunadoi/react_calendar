@@ -44,6 +44,7 @@ const CalendarBoard = props => {
 
   const createWeek = date => {
     const baseDay = date.getDay();
+
     const beforeBaseDay = [];
     for (let beforeDay=0; beforeDay < baseDay; beforeDay++) {
       let diffDayLength = baseDay - beforeDay
