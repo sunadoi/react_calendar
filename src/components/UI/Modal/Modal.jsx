@@ -23,7 +23,7 @@ const Modal = (props) => {
 
 const mapStateToProps = state => {
   return {
-    showModal: state.showModal
+    showModal: state.modal.showModal
   }
 }
 

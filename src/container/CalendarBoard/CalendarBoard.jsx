@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './CalendarBoard.module.css';
 
 import CalendarElement from '../CalendarElement/CalendarElement';
@@ -7,7 +7,12 @@ import AddSchedule from '../AddSchedule/AddSchedule';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
-const calendarBoard = props => {
+const CalendarBoard = props => {
+  useEffect(() => {
+    if(props.date)
+    createMonth(props.date);
+  }, [props.date])
+
   const weekDay = [ "日", "月", "火", "水", "木", "金", "土" ]
   const weekDayList = []
   weekDay.map((day, dayIndex) => {
@@ -15,15 +20,11 @@ const calendarBoard = props => {
   });
 
 
-  const today = new Date();
+  // const today = new Date();
   const firstDay = new Date();
   const first = new Date(firstDay.setDate(1));
-  const getsumatsu = new Date(today.getFullYear(), today.getMonth(), 0);
-  const last = new Date(getsumatsu.setDate(1))
-  // console.log(today);
-  // console.log(copytoday);
-  // console.log(first);
-  // console.log(last);
+  // const getsumatsu = new Date(today.getFullYear(), today.getMonth(), 0);
+  // const last = new Date(getsumatsu.setDate(1))
 
   const month = []
 
@@ -78,7 +79,8 @@ const calendarBoard = props => {
   }
 
   const modal = props.showModal ? <AddSchedule  /> : null
-
+  console.log("calendar", props.today)
+  // const firstDay = new Date(props.today.setDate(1))
   createMonth(first);
 
   return (
@@ -92,7 +94,9 @@ const calendarBoard = props => {
 
 const mapStateToProps = state => {
   return {
-    showModal: state.showModal
+    showModal: state.modal.showModal,
+    today: state.calendar.today,
+    date: state.calendar.date
   }
 }
 
@@ -102,4 +106,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(calendarBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarBoard);
