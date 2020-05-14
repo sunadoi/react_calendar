@@ -7,6 +7,7 @@ import ViewHeadlineIcon from '@material-ui/icons/ViewHeadline';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import Button from '@material-ui/core/Button';
 
 const Navbar = props => {
   const [yearMonth, setYearMonth] = useState('');
@@ -35,6 +36,7 @@ const Navbar = props => {
         <li><ViewHeadlineIcon /></li>
         <li><CalendarTodayIcon /></li>
         <li>カレンダー</li>
+        <li><Button variant="outlined" onClick={() => props.onFetchToday()} >今日</Button></li>
         <li><ArrowBackIosIcon onClick={() => onPreviousMonthHandler()} /></li>
         <li><ArrowForwardIosIcon onClick={() => onNextMonthHandler()} /></li>
         <li>{yearMonth}</li>
