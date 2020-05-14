@@ -77,7 +77,7 @@ const CalendarBoard = props => {
     return (
       <div className={classes.Week} key={weekIndex}>
         {week.map((day, dayIndex) => {
-          return <CalendarElement date={day} weekLength={dateState.length} key={dayIndex} />
+          return <CalendarElement day={day} weekLength={dateState.length} key={dayIndex} />
         })}
       </div>
     )
