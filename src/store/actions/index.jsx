@@ -5,5 +5,6 @@ export {
 
 export {
   fetchToday,
-  setPreviousMonth
+  setPreviousMonth,
+  setNextMonth
 } from './calendar'

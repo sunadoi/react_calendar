@@ -11,3 +11,9 @@ export const setPreviousMonth = () => {
     type: actionTypes.SET_PREVIOUS_MONTH
   }
 }
+
+export const setNextMonth = () => {
+  return {
+    type: actionTypes.SET_NEXT_MONTH
+  }
+}
