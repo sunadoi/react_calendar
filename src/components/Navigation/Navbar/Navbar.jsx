@@ -22,7 +22,7 @@ const Navbar = props => {
     props.onPreviousMonth()
   }
 
-  console.log(props.date)
+  // console.log(props.date)
 
   return (
     <div className={classes.Navbar}>

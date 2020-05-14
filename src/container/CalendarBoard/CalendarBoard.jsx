@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './CalendarBoard.module.css';
 
 import CalendarElement from '../CalendarElement/CalendarElement';
@@ -8,9 +8,13 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
 const CalendarBoard = props => {
+  const [dateState, setDateState] = useState([]);
+
   useEffect(() => {
-    if(props.date)
-    createMonth(props.date);
+    if(props.date) {
+      const firstDay = new Date(props.date.setDate(1))
+      createMonth(firstDay);
+    }
   }, [props.date])
 
   const weekDay = [ "日", "月", "火", "水", "木", "金", "土" ]
@@ -21,14 +25,14 @@ const CalendarBoard = props => {
 
 
   // const today = new Date();
-  const firstDay = new Date();
-  const first = new Date(firstDay.setDate(1));
+  // const firstDay = new Date();
+  // const first = new Date(firstDay.setDate(1));
   // const getsumatsu = new Date(today.getFullYear(), today.getMonth(), 0);
   // const last = new Date(getsumatsu.setDate(1))
 
-  const month = []
-
   const createMonth = date => {
+    const month = []
+
     for (let week=0; week <= 5; week++) {
       let day = new Date(new Date(date).setDate(date.getDate() + (7 * week)))
 
@@ -36,7 +40,7 @@ const CalendarBoard = props => {
       month.push(createWeek(day))
       if (week === 4 && lastDay.getDay() - day.getDay() >= 0) break; //最終日が第5週目だったらbreak
     }
-    return month
+    setDateState(month)
   }
 
   const createWeek = date => {
@@ -58,10 +62,12 @@ const CalendarBoard = props => {
     return [...beforeBaseDay, date, ...afterBaseDay]
   }
 
-  const renderMonth = (month) => {
+  const renderMonth = () => {
+    if (!props.date) return;
+
     return (
       <div className={classes.Month}>
-        {month.map((week, weekIndex) => {
+        {dateState.map((week, weekIndex) => {
           return renderWeek(week, weekIndex)
         })}
       </div>
@@ -79,15 +85,12 @@ const CalendarBoard = props => {
   }
 
   const modal = props.showModal ? <AddSchedule  /> : null
-  console.log("calendar", props.today)
-  // const firstDay = new Date(props.today.setDate(1))
-  createMonth(first);
 
   return (
     <div className={classes.CalendarBoard}>
       {modal}
       <ul>{weekDayList}</ul>
-      {renderMonth(month)}
+      {renderMonth()}
     </div>
   )
 }
@@ -95,7 +98,6 @@ const CalendarBoard = props => {
 const mapStateToProps = state => {
   return {
     showModal: state.modal.showModal,
-    today: state.calendar.today,
     date: state.calendar.date
   }
 }
