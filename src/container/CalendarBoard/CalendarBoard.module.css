@@ -10,8 +10,9 @@
   padding: 0;
 }
 
-.dayOfWeek {
+.WeekDay {
   width: 100%;
+  height: 3vh;
   border: 1px solid #ccc;
   border-bottom: none;
   text-align: center;

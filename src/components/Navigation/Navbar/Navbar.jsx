@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './Navbar.module.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
@@ -9,20 +9,25 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const Navbar = props => {
+  const [yearMonth, setYearMonth] = useState('');
 
   useEffect(() => {
     props.onFetchToday();
-  }, [props.onFetchToday])
+  }, [])
 
-  const today = new Date()
-  const yearMonth = `${today.getFullYear()}年${today.getMonth() + 1}月`
-
+  useEffect(() => {
+    if (props.date) {
+      setYearMonth(`${props.date.getFullYear()}年${props.date.getMonth() + 1}月`)
+    }
+  }, [props.date])
 
   const onPreviousMonthHandler = () => {
     props.onPreviousMonth()
   }
 
-  // console.log(props.date)
+  const onNextMonthHandler = () => {
+    props.onNextMonth()
+  }
 
   return (
     <div className={classes.Navbar}>
@@ -31,7 +36,7 @@ const Navbar = props => {
         <li><CalendarTodayIcon /></li>
         <li>カレンダー</li>
         <li><ArrowBackIosIcon onClick={() => onPreviousMonthHandler()} /></li>
-        <li><ArrowForwardIosIcon /></li>
+        <li><ArrowForwardIosIcon onClick={() => onNextMonthHandler()} /></li>
         <li>{yearMonth}</li>
       </ul>
     </div>
@@ -48,7 +53,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchToday: () => dispatch(actions.fetchToday()),
-    onPreviousMonth: () => dispatch(actions.setPreviousMonth())
+    onPreviousMonth: () => dispatch(actions.setPreviousMonth()),
+    onNextMonth: () => dispatch(actions.setNextMonth())
   }
 }
 

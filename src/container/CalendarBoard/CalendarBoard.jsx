@@ -17,18 +17,17 @@ const CalendarBoard = props => {
     }
   }, [props.date])
 
-  const weekDay = [ "日", "月", "火", "水", "木", "金", "土" ]
-  const weekDayList = []
-  weekDay.map((day, dayIndex) => {
-    weekDayList.push(<li className={classes.weekDay} key={dayIndex}>{day}</li>)
-  });
+  const renderWeekDay = () => {
+    const weekDay = [ "日", "月", "火", "水", "木", "金", "土" ]
 
-
-  // const today = new Date();
-  // const firstDay = new Date();
-  // const first = new Date(firstDay.setDate(1));
-  // const getsumatsu = new Date(today.getFullYear(), today.getMonth(), 0);
-  // const last = new Date(getsumatsu.setDate(1))
+    return (
+      <ul>
+        {weekDay.map((day, dayIndex) => {
+          return <li className={classes.WeekDay} key={dayIndex}>{day}</li>
+        })}
+      </ul>
+    );
+  };
 
   const createMonth = date => {
     const month = []
@@ -78,7 +77,7 @@ const CalendarBoard = props => {
     return (
       <div className={classes.Week} key={weekIndex}>
         {week.map((day, dayIndex) => {
-          return <CalendarElement date={day} key={dayIndex} />
+          return <CalendarElement date={day} weekLength={dateState.length} key={dayIndex} />
         })}
       </div>
     )
@@ -89,7 +88,7 @@ const CalendarBoard = props => {
   return (
     <div className={classes.CalendarBoard}>
       {modal}
-      <ul>{weekDayList}</ul>
+      {renderWeekDay()}
       {renderMonth()}
     </div>
   )

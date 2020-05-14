@@ -1,6 +1,6 @@
 .Navbar ul {
   display: flex;
-  height: 80px;
+  height: 10vh;
 }
 
 .Navbar li {
