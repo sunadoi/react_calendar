@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
-class Schedule extends Component {
-  render () {
-    return (
-      <p></p>
-    )
-  }
+const Schedule = props => {
+  return (
+    <p></p>
+  )
 }
 
 
