@@ -1,7 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  today: null,
   date: null
 }
 
@@ -11,7 +10,6 @@ const reducer = (state=initialState, action) => {
       const today = new Date()
       return {
         ...state,
-        today: today,
         date: today
       }
     case actionTypes.SET_PREVIOUS_MONTH:
@@ -29,6 +27,14 @@ const reducer = (state=initialState, action) => {
       return {
         ...state,
         date: nextMonth
+      }
+    case actionTypes.SET_SELECTED_DATE:
+      const selectedDate = action.date
+      const firstDate = new Date(new Date(selectedDate.setDate(1)))
+
+      return {
+        ...state,
+        date: firstDate
       }
     default:
       return state;

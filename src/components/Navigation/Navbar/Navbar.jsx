@@ -12,6 +12,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 const Navbar = props => {
+  const [dateState, setDateState] = useState(props.date);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Navbar = props => {
 
   useEffect(() => {
     if (props.date) {
-      setSelectedDate(props.date)
+      setDateState(props.date)
     }
   }, [props.date])
 
@@ -32,11 +33,20 @@ const Navbar = props => {
     props.onNextMonth()
   }
 
-  const CustomInput = ({ onClick }) => (
-    <Button className="custom-input" onClick={onClick}>
-      {`${selectedDate.getFullYear()}年${selectedDate.getMonth() + 1}月`}
-    </Button>
-  );
+  const onSelectedDateHandler = (date) => {
+    setSelectedDate(date)
+    props.onSelectedDate(date);
+  }
+
+  const CustomInput = ({ onClick }) => {
+    if (!dateState) return new Date().getDate();
+
+    return (
+      <Button className="custom-input" onClick={onClick}>
+        {`${dateState.getFullYear()}年${dateState.getMonth() + 1}月`}
+      </Button>
+    )
+  };
 
   return (
     <div className={classes.Navbar}>
@@ -49,7 +59,7 @@ const Navbar = props => {
         <li><ArrowForwardIosIcon onClick={() => onNextMonthHandler()} /></li>
         <DatePicker
           selected={selectedDate}
-          onChange={date => setSelectedDate(date)}
+          onChange={date => onSelectedDateHandler(date)}
           customInput = {<CustomInput />}
         />
       </ul>
@@ -59,7 +69,6 @@ const Navbar = props => {
 
 const mapStateToProps = state => {
   return {
-    today: state.calendar.today,
     date: state.calendar.date
   }
 }
@@ -68,7 +77,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchToday: () => dispatch(actions.fetchToday()),
     onPreviousMonth: () => dispatch(actions.setPreviousMonth()),
-    onNextMonth: () => dispatch(actions.setNextMonth())
+    onNextMonth: () => dispatch(actions.setNextMonth()),
+    onSelectedDate: (date) => dispatch(actions.setSelectedDate(date))
   }
 }
 
