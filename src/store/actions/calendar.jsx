@@ -17,3 +17,10 @@ export const setNextMonth = () => {
     type: actionTypes.SET_NEXT_MONTH
   }
 }
+
+export const setSelectedDate = (date) => {
+  return {
+    type: actionTypes.SET_SELECTED_DATE,
+    date: date
+  }
+}

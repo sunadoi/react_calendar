@@ -8,9 +8,12 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Button from '@material-ui/core/Button';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 const Navbar = props => {
-  const [yearMonth, setYearMonth] = useState('');
+  const [dateState, setDateState] = useState(props.date);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
     props.onFetchToday();
@@ -18,7 +21,7 @@ const Navbar = props => {
 
   useEffect(() => {
     if (props.date) {
-      setYearMonth(`${props.date.getFullYear()}年${props.date.getMonth() + 1}月`)
+      setDateState(props.date)
     }
   }, [props.date])
 
@@ -30,6 +33,21 @@ const Navbar = props => {
     props.onNextMonth()
   }
 
+  const onSelectedDateHandler = (date) => {
+    setSelectedDate(date)
+    props.onSelectedDate(date);
+  }
+
+  const CustomInput = ({ onClick }) => {
+    if (!dateState) return new Date().getDate();
+
+    return (
+      <Button className="custom-input" onClick={onClick}>
+        {`${dateState.getFullYear()}年${dateState.getMonth() + 1}月`}
+      </Button>
+    )
+  };
+
   return (
     <div className={classes.Navbar}>
       <ul>
@@ -39,7 +57,11 @@ const Navbar = props => {
         <li><Button variant="outlined" onClick={() => props.onFetchToday()} >今日</Button></li>
         <li><ArrowBackIosIcon onClick={() => onPreviousMonthHandler()} /></li>
         <li><ArrowForwardIosIcon onClick={() => onNextMonthHandler()} /></li>
-        <li>{yearMonth}</li>
+        <DatePicker
+          selected={selectedDate}
+          onChange={date => onSelectedDateHandler(date)}
+          customInput = {<CustomInput />}
+        />
       </ul>
     </div>
   )
@@ -47,7 +69,6 @@ const Navbar = props => {
 
 const mapStateToProps = state => {
   return {
-    today: state.calendar.today,
     date: state.calendar.date
   }
 }
@@ -56,7 +77,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchToday: () => dispatch(actions.fetchToday()),
     onPreviousMonth: () => dispatch(actions.setPreviousMonth()),
-    onNextMonth: () => dispatch(actions.setNextMonth())
+    onNextMonth: () => dispatch(actions.setNextMonth()),
+    onSelectedDate: (date) => dispatch(actions.setSelectedDate(date))
   }
 }
 
