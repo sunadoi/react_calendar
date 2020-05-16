@@ -9,7 +9,7 @@ const CalendarElement = props => {
 
   const onClickHandler = (day) => {
     props.setSelectedDay(day);
-    props.openModal();
+    props.openAddModal();
   }
 
   const opacity =
@@ -48,7 +48,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setSelectedDay: (day) => dispatch(actions.setSelectedDay(day)),
-    openModal: () => dispatch(actions.openModal())
+    openAddModal: () => dispatch(actions.openAddModal())
   }
 }
 

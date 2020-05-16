@@ -1,8 +1,14 @@
 import * as actionTypes from './actionTypes';
 
-export const openModal = () => {
+export const openAddModal = () => {
   return {
-    type: actionTypes.OPEN_MODAL
+    type: actionTypes.OPEN_ADD_MODAL
+  }
+}
+
+export const openCurrentModal = () => {
+  return {
+    type: actionTypes.OPEN_CURRENT_MODAL
   }
 }
 

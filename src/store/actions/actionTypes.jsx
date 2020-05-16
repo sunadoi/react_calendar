@@ -1,4 +1,5 @@
-export const OPEN_MODAL = 'OPEN_MODAL';
+export const OPEN_ADD_MODAL = 'OPEN_ADD_MODAL';
+export const OPEN_CURRENT_MODAL = 'OPEN_CURRENT_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 export const SET_SELECTED_DAY = 'SET_SELECTED_DAY';
@@ -8,3 +9,4 @@ export const SET_NEXT_MONTH = 'SET_NEXT_MONTH';
 export const SET_SELECTED_DATE = 'SET_SELECTED_DATE';
 
 export const ADD_SCHEDULE = 'ADD_SCHEDULE';
+export const SET_SELECTED_SCHEDULE = 'SET_SELECTED_SCHEDULE';
