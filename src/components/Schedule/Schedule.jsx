@@ -1,26 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+
+import * as actions from '../../store/actions/index';
+import classes from './Schedule.module.css';
 
 const Schedule = props => {
 
   const day = `${props.day.getFullYear()}年${props.day.getMonth() + 1}月${props.day.getDate()}日`
 
+  const showSchedule = (event, schedule, day, index) => {
+    event.stopPropagation()
+    props.setSelectedSchedule(day, index)
+    props.openCurrentModal(schedule)
+  }
+
   const renderSchedule = () => {
     if (!props.schedules) return;
-    const scheduleTitles = props.schedules.map((schedule) => {
-      return schedule.date === day ? schedule.title : null
+    const schedules = [];
+    props.schedules.map((schedule) => {
+      return schedule.date === day ? schedules.push(schedule) : null
     })
 
     return (
-        scheduleTitles.map((title, index) => {
-          return <p key={index}>{title}</p>
-        })
+      schedules.map((schedule, index) => {
+        return <Button key={index} onClick={(event) => showSchedule(event, schedule, day, index)}>{schedule.title}</Button>
+      })
     )
   }
 
 
   return (
-    <div>
+    <div className={classes.Schedule}>
       {renderSchedule()}
     </div>
   )
@@ -32,4 +43,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Schedule);
+const mapDispatchToProps = dispatch => {
+  return {
+    setSelectedSchedule: (day, index) => dispatch(actions.setSelectedSchedule(day, index)),
+    openCurrentModal: () => dispatch(actions.openCurrentModal())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Schedule);
