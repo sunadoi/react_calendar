@@ -1,11 +1,17 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  date: null
+  date: null,
+  selectedDay: null,
 }
 
 const reducer = (state=initialState, action) => {
   switch(action.type) {
+    case actionTypes.SET_SELECTED_DAY:
+      return {
+        ...state,
+        selectedDay: action.day
+      }
     case actionTypes.FETCH_TODAY:
       const today = new Date()
       return {

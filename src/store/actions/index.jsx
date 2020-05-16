@@ -4,8 +4,13 @@ export {
 } from './showModal';
 
 export {
+  setSelectedDay,
   fetchToday,
   setPreviousMonth,
   setNextMonth,
   setSelectedDate
-} from './calendar'
+} from './calendar';
+
+export {
+  addSchedule
+} from './schedule';

@@ -6,6 +6,12 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
 const CalendarElement = props => {
+
+  const onClickHandler = (day) => {
+    props.setSelectedDay(day);
+    props.openModal();
+  }
+
   const opacity =
     props.date.getMonth() === props.day.getMonth()
       ? 1
@@ -25,7 +31,7 @@ const CalendarElement = props => {
     <div
       className={classes.CalendarEl}
       style={{height: `calc(85vh / ${props.weekLength})`}}
-      onClick={() => props.openModal()}
+      onClick={() => onClickHandler(props.day)}
     >
       <p style={{opacity: opacity, color: color}}>{day}</p>
       <Schedule day={props.day} />
@@ -41,6 +47,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    setSelectedDay: (day) => dispatch(actions.setSelectedDay(day)),
     openModal: () => dispatch(actions.openModal())
   }
 }

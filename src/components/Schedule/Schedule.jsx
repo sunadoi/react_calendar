@@ -1,13 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
 const Schedule = props => {
+
+  const day = `${props.day.getFullYear()}年${props.day.getMonth() + 1}月${props.day.getDate()}日`
+
+  const renderSchedule = () => {
+    if (!props.schedules) return;
+    const scheduleTitles = props.schedules.map((schedule) => {
+      return schedule.date === day ? schedule.title : null
+    })
+
+    return (
+        scheduleTitles.map((title, index) => {
+          return <p key={index}>{title}</p>
+        })
+    )
+  }
+
+
   return (
-    <p></p>
+    <div>
+      {renderSchedule()}
+    </div>
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    schedules: state.schedule.schedules
+  }
+}
 
-//scheduleというreducerを作ってそこで日付と予定を管理する
-//this.props.dayとreduxのscheduleの日付が一致すればその予定をrenderする
-
-export default Schedule;
+export default connect(mapStateToProps)(Schedule);
