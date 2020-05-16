@@ -3,6 +3,7 @@ import classes from './CalendarBoard.module.css';
 
 import CalendarElement from '../CalendarElement/CalendarElement';
 import AddSchedule from '../AddSchedule/AddSchedule';
+import CurrentSchedule from '../CurrentSchedule/CurrentSchedule';
 
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
@@ -84,11 +85,15 @@ const CalendarBoard = props => {
     )
   }
 
-  const modal = props.showModal ? <AddSchedule  /> : null
+  const renderModal = () => {
+    if (!props.showModal) return;
+
+    return props.addOrCurrent === 'add' ? <AddSchedule  /> : <CurrentSchedule />
+  }
 
   return (
     <div className={classes.CalendarBoard}>
-      {modal}
+      {renderModal()}
       {renderWeekDay()}
       {renderMonth()}
     </div>
@@ -98,14 +103,9 @@ const CalendarBoard = props => {
 const mapStateToProps = state => {
   return {
     showModal: state.modal.showModal,
+    addOrCurrent: state.modal.addOrCurrent,
     date: state.calendar.date
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    openModal: () => dispatch(actions.openModal())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarBoard);
+export default connect(mapStateToProps)(CalendarBoard);
