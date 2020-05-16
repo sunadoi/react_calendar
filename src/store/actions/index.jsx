@@ -1,5 +1,6 @@
 export {
-  openModal,
+  openAddModal,
+  openCurrentModal,
   closeModal
 } from './showModal';
 
@@ -12,5 +13,6 @@ export {
 } from './calendar';
 
 export {
-  addSchedule
+  addSchedule,
+  setSelectedSchedule
 } from './schedule';
