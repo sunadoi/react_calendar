@@ -8,10 +8,12 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import modalReducer from './store/reducers/showModal';
 import calendarReducer from './store/reducers/calendar';
+import scheduleReducer from './store/reducers/schedule';
 
 const rootReducer = combineReducers({
   modal: modalReducer,
-  calendar: calendarReducer
+  calendar: calendarReducer,
+  schedule: scheduleReducer
 })
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
