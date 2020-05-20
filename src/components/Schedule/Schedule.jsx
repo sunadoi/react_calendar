@@ -38,7 +38,6 @@ const Schedule = props => {
     )
   }
 
-
   return (
     <div>
       {renderSchedule()}

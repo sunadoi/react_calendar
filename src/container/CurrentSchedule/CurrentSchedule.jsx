@@ -36,10 +36,15 @@ const CurrentSchedule = props => {
     </DialogContent>
   )
 
+  const onDeleteSchedule = () => {
+    props.closeModal();
+    props.removeSchedule();
+  }
+
   return (
     <Modal>
       <DialogActions>
-        <Button onClick={() => props.closeModal()} color="primary"><DeleteIcon /></Button>
+        <Button onClick={() => onDeleteSchedule()} color="primary"><DeleteIcon /></Button>
         <Button onClick={() => props.closeModal()} color="primary"><CloseIcon /></Button>
       </DialogActions>
       <div className={classes.CurrentSchedule}>
@@ -60,7 +65,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(actions.closeModal()),
-    addSchedule: (schedule) => dispatch(actions.addSchedule(schedule))
+    addSchedule: (schedule) => dispatch(actions.addSchedule(schedule)),
+    removeSchedule: () => dispatch(actions.removeSchedule())
   }
 }
 

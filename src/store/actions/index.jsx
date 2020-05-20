@@ -14,5 +14,6 @@ export {
 
 export {
   addSchedule,
-  setSelectedSchedule
+  setSelectedSchedule,
+  removeSchedule
 } from './schedule';
