@@ -24,14 +24,23 @@ const Schedule = props => {
 
     return (
       schedules.map((schedule, index) => {
-        return <Button key={index} onClick={(event) => showSchedule(event, schedule, day, index)}>{schedule.title}</Button>
+        return <div className={classes.Schedule}><Button
+            key={index}
+            className={classes.ScheduleBtn}
+            style={{
+              color: 'white',
+              fontSize: '12px',
+              padding: '2px'
+            }}
+            onClick={(event) => showSchedule(event, schedule, day, index)}
+          >{schedule.title}</Button></div>
       })
     )
   }
 
 
   return (
-    <div className={classes.Schedule}>
+    <div>
       {renderSchedule()}
     </div>
   )
