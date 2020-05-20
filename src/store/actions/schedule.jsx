@@ -14,3 +14,9 @@ export const setSelectedSchedule = (day, index) => {
     index: index
   }
 }
+
+export const removeSchedule = () => {
+  return {
+    type: actionTypes.REMOVE_SCHEDULE
+  }
+}
