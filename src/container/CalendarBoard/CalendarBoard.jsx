@@ -22,9 +22,9 @@ const CalendarBoard = props => {
     const weekDay = [ "日", "月", "火", "水", "木", "金", "土" ]
 
     return (
-      <ul>
+      <ul className={classes.WeekDay}>
         {weekDay.map((day, dayIndex) => {
-          return <li className={classes.WeekDay} key={dayIndex}>{day}</li>
+          return <li key={dayIndex}><p>{day}</p></li>
         })}
       </ul>
     );

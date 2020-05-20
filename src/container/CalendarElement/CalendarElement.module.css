@@ -4,4 +4,9 @@
   width: 100%;
   height: 100vh;
   text-align: center;
+  font-size: 12px;
+}
+
+.CalendarEl p {
+  margin-top: 5px;
 }
