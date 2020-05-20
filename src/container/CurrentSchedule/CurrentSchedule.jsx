@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -17,50 +17,22 @@ import * as actions from '../../store/actions/index';
 
 const CurrentSchedule = props => {
 
-  useEffect(() => {
-  }, [])
-
   const dialogContent = (
     <DialogContent>
-      <TextField
-        autoFocus
-        placeholder="タイトルと日時を追加"
-        margin="dense"
-        fullWidth
-        size='medium'
-        name='title'
-        // value={schedule.title}
-      />
-      <div>
-        <AccessTimeIcon />
-        <TextField
-          placeholder="日時を追加"
-          margin="dense"
-          size='medium'
-          name='date'
-          // value={schedule.date}
-        />
+      <div className={classes.content}>
+        <p className={classes.title}>{props.selectedSchedule.title}</p>
+        <p className={classes.date}>{props.selectedSchedule.date}</p>
       </div>
-      <div>
+      {props.selectedSchedule.place &&
+      <div className={classes.information}>
         <PlaceIcon />
-        <TextField
-          placeholder="場所を追加"
-          margin="dense"
-          size='medium'
-          name='place'
-          // value={schedule.place}
-        />
-      </div>
-      <div>
+        <p>{props.selectedSchedule.place}</p>
+      </div>}
+      {props.selectedSchedule.description &&
+      <div className={classes.information}>
         <SubjectIcon />
-        <TextField
-          placeholder="説明を追加"
-          margin="dense"
-          size='medium'
-          name='description'
-          // value={schedule.description}
-        />
-      </div>
+        <p>{props.selectedSchedule.description}</p>
+      </div>}
     </DialogContent>
   )
 
@@ -71,7 +43,6 @@ const CurrentSchedule = props => {
         <Button onClick={() => props.closeModal()} color="primary"><CloseIcon /></Button>
       </DialogActions>
       <div className={classes.CurrentSchedule}>
-        <p>{props.selectedSchedule.title}</p>
         {dialogContent}
       </div>
     </Modal>
