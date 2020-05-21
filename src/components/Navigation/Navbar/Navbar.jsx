@@ -55,8 +55,16 @@ const Navbar = props => {
         <li><CalendarTodayIcon /></li>
         <li>カレンダー</li>
         <li><Button variant="outlined" onClick={() => props.onFetchToday()} >今日</Button></li>
-        <li><ArrowBackIosIcon onClick={() => onPreviousMonthHandler()} /></li>
-        <li><ArrowForwardIosIcon onClick={() => onNextMonthHandler()} /></li>
+        <li style={{margin: '0'}}>
+          <Button style={{maxWidth: '80%', padding: '8px 0'}} onClick={() => onPreviousMonthHandler()}>
+            <ArrowBackIosIcon style={{width: '16px'}} />
+          </Button>
+        </li>
+        <li style={{margin: '0'}}>
+          <Button style={{maxWidth: '80%', padding: '8px 0'}} onClick={() => onNextMonthHandler()}>
+            <ArrowForwardIosIcon style={{width: '16px'}} />
+          </Button>
+        </li>
         <DatePicker
           selected={selectedDate}
           onChange={date => onSelectedDateHandler(date)}
