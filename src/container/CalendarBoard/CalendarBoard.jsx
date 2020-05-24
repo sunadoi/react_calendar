@@ -4,9 +4,9 @@ import classes from './CalendarBoard.module.css';
 import CalendarElement from '../CalendarElement/CalendarElement';
 import AddSchedule from '../AddSchedule/AddSchedule';
 import CurrentSchedule from '../CurrentSchedule/CurrentSchedule';
+import UpdateSchedule from '../UpdateSchedule/UpdateSchedule';
 
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
 
 const CalendarBoard = props => {
   const [dateState, setDateState] = useState([]);
@@ -88,7 +88,12 @@ const CalendarBoard = props => {
   const renderModal = () => {
     if (!props.showModal) return;
 
-    return props.addOrCurrent === 'add' ? <AddSchedule  /> : <CurrentSchedule />
+    switch (props.modalType) {
+      case 'add': return <AddSchedule />
+      case 'current': return <CurrentSchedule />
+      case 'update': return <UpdateSchedule />
+      default: return null
+    }
   }
 
   return (
@@ -103,7 +108,7 @@ const CalendarBoard = props => {
 const mapStateToProps = state => {
   return {
     showModal: state.modal.showModal,
-    addOrCurrent: state.modal.addOrCurrent,
+    modalType: state.modal.modalType,
     date: state.calendar.date
   }
 }

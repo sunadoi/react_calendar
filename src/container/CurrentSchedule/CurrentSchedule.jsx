@@ -8,6 +8,7 @@ import PlaceIcon from '@material-ui/icons/Place';
 import SubjectIcon from '@material-ui/icons/Subject';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CloseIcon from '@material-ui/icons/Close';
+import EditIcon from '@material-ui/icons/Edit';
 
 import Modal from '../../components/UI/Modal/Modal';
 import classes from './CurrentSchedule.module.css';
@@ -36,6 +37,11 @@ const CurrentSchedule = props => {
     </DialogContent>
   )
 
+  const onEditSchedule = () => {
+    props.closeModal();
+    props.openUpdateModal();
+  }
+
   const onDeleteSchedule = () => {
     props.closeModal();
     props.removeSchedule();
@@ -44,6 +50,7 @@ const CurrentSchedule = props => {
   return (
     <Modal>
       <DialogActions>
+        <Button onClick={() => onEditSchedule()} color="primary"><EditIcon /></Button>
         <Button onClick={() => onDeleteSchedule()} color="primary"><DeleteIcon /></Button>
         <Button onClick={() => props.closeModal()} color="primary"><CloseIcon /></Button>
       </DialogActions>
@@ -65,7 +72,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(actions.closeModal()),
-    addSchedule: (schedule) => dispatch(actions.addSchedule(schedule)),
+    openUpdateModal: () => dispatch(actions.openUpdateModal()),
     removeSchedule: () => dispatch(actions.removeSchedule())
   }
 }

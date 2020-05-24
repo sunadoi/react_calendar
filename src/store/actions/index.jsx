@@ -1,6 +1,7 @@
 export {
   openAddModal,
   openCurrentModal,
+  openUpdateModal,
   closeModal
 } from './showModal';
 
@@ -15,5 +16,6 @@ export {
 export {
   addSchedule,
   setSelectedSchedule,
+  updateSchedule,
   removeSchedule
 } from './schedule';

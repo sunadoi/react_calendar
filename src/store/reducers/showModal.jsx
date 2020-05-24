@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   showModal: false,
-  addOrCurrent: null
+  modalType: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,19 +11,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showModal: true,
-        addOrCurrent: 'add'
+        modalType: 'add'
       }
     case actionTypes.OPEN_CURRENT_MODAL:
       return {
         ...state,
         showModal: true,
-        addOrCurrent: 'current'
+        modalType: 'current'
+      }
+    case actionTypes.OPEN_UPDATE_MODAL:
+      return {
+        ...state,
+        showModal: true,
+        modalType: 'update'
       }
     case actionTypes.CLOSE_MODAL:
       return {
         ...state,
         showModal: false,
-        addOrCurrent: null
+        modalType: null
       }
     default:
       return state;

@@ -12,6 +12,12 @@ export const openCurrentModal = () => {
   }
 }
 
+export const openUpdateModal = () => {
+  return {
+    type: actionTypes.OPEN_UPDATE_MODAL
+  }
+}
+
 export const closeModal = () => {
   return {
     type: actionTypes.CLOSE_MODAL
