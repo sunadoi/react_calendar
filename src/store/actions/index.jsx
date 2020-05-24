@@ -14,6 +14,7 @@ export {
 } from "./calendar";
 
 export {
+  fetchSchedules,
   addSchedule,
   setSelectedSchedule,
   updateSchedule,

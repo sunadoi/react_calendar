@@ -19,8 +19,10 @@ const Schedule = (props) => {
   const renderSchedule = () => {
     if (!props.schedules) return;
     const schedules = [];
-    props.schedules.map((schedule) => {
-      return schedule.date === day ? schedules.push(schedule) : null;
+    Object.keys(props.schedules).map((scheduleKey) => {
+      return props.schedules[scheduleKey].date === day
+        ? schedules.push(props.schedules[scheduleKey])
+        : null;
     });
 
     return schedules.map((schedule, index) => {

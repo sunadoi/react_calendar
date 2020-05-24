@@ -1,21 +1,16 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  schedules: [],
+  schedules: null,
   selectedSchedule: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_SCHEDULE:
-      const addedSchedules = [...state.schedules];
-      if (action.schedule.title === "")
-        action.schedule.title = "(タイトルなし)";
-      addedSchedules.push(action.schedule);
-
+    case actionTypes.SET_SCHEDULES:
       return {
         ...state,
-        schedules: addedSchedules,
+        schedules: action.schedules,
       };
     case actionTypes.SET_SELECTED_SCHEDULE:
       const schedules = [];
