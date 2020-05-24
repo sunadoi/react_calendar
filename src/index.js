@@ -4,11 +4,13 @@ import "./index.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import modalReducer from "./store/reducers/showModal";
 import calendarReducer from "./store/reducers/calendar";
 import scheduleReducer from "./store/reducers/schedule";
+
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   modal: modalReducer,
@@ -16,9 +18,14 @@ const rootReducer = combineReducers({
   schedule: scheduleReducer,
 });
 
+const composeEnhancers =
+  process.env.NODE_ENV === "development"
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : null || compose;
+
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 const app = (

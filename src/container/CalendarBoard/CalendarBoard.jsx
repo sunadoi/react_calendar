@@ -7,6 +7,7 @@ import CurrentSchedule from "../CurrentSchedule/CurrentSchedule";
 import UpdateSchedule from "../UpdateSchedule/UpdateSchedule";
 
 import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
 
 const CalendarBoard = (props) => {
   const [dateState, setDateState] = useState([]);
@@ -16,6 +17,7 @@ const CalendarBoard = (props) => {
       const firstDay = new Date(props.date.setDate(1));
       createMonth(firstDay);
     }
+    props.fetchSchedules();
   }, [props.date]);
 
   const renderWeekDay = () => {
@@ -133,4 +135,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CalendarBoard);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchSchedules: () => dispatch(actions.fetchSchedules()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarBoard);
