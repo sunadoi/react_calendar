@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import classes from "./CalendarBoard.module.css";
+import classes from "./CalendarBoard.module.scss";
 
 import CalendarElement from "../CalendarElement/CalendarElement";
 import AddSchedule from "../AddSchedule/AddSchedule";

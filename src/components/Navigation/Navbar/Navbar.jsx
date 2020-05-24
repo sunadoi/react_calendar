@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import classes from "./Navbar.module.css";
+import classes from "./Navbar.module.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Schedule from "../../components/Schedule/Schedule";
-import classes from "./CalendarElement.module.css";
+import classes from "./CalendarElement.module.scss";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";

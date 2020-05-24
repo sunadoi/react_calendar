@@ -1,9 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import PlaceIcon from "@material-ui/icons/Place";
 import SubjectIcon from "@material-ui/icons/Subject";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -11,7 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import EditIcon from "@material-ui/icons/Edit";
 
 import Modal from "../../components/UI/Modal/Modal";
-import classes from "./CurrentSchedule.module.css";
+import classes from "./CurrentSchedule.module.scss";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
