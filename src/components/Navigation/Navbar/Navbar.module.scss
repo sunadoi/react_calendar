@@ -1,10 +1,12 @@
-.Navbar ul {
-  display: flex;
-  height: 7vh;
-  margin: 1.5vh 0;
-  align-items: center;
-}
+.Navbar {
+  ul {
+    display: flex;
+    height: 7vh;
+    margin: 1.5vh 0;
+    align-items: center;
+  }
 
-.Navbar li {
-  margin: 0 16px;
+  li {
+    margin: 0 16px;
+  }
 }

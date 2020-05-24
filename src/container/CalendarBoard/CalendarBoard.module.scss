@@ -1,27 +1,28 @@
 .CalendarBoard {
   width: 100%;
   height: 100%;
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+  }
 }
 
-.CalendarBoard ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  padding: 0;
-}
+.WeekDay {
+  li {
+    width: 100%;
+    height: 3vh;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    text-align: center;
+    font-size: 12px;
+  }
 
-.WeekDay li{
-  width: 100%;
-  height: 3vh;
-  border: 1px solid #ccc;
-  border-bottom: none;
-  text-align: center;
-  font-size: 12px;
-}
-
-.WeekDay p {
-  margin-top: 5px;
-  opacity: 0.5;
+  p {
+    margin-top: 5px;
+    opacity: 0.5;
+  }
 }
 
 .Week {
