@@ -30,7 +30,8 @@ const Schedule = props => {
             style={{
               color: 'white',
               fontSize: '12px',
-              padding: '2px'
+              padding: '2px',
+              textTransform: 'none'
             }}
             onClick={(event) => showSchedule(event, schedule, day, index)}
           >{schedule.title}</Button></div>

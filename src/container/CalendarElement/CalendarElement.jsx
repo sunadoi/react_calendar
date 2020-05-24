@@ -17,12 +17,12 @@ const CalendarElement = props => {
       ? 1
       : 0.5
 
-  const color =
+  const isToday =
     props.day.getFullYear() === new Date().getFullYear() &&
     props.day.getMonth() === new Date().getMonth() &&
     props.day.getDate() === new Date().getDate()
-      ? 'red'
-      : 'black'
+
+  const color = isToday ? 'red' : 'black'
 
   const firstDay = `${props.day.getMonth()+1}月${props.day.getDate()}日`
   const day = props.day.getDate() === 1 ? firstDay : props.day.getDate()

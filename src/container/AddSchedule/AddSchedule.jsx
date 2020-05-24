@@ -98,9 +98,7 @@ const AddSchedule = props => {
 
 const mapStateToProps = state => {
   return {
-    date: state.calendar.date,
     selectedDay: state.calendar.selectedDay,
-    schedule: state.schedule.schedule
   }
 }
 
