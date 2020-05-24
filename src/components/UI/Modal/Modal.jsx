@@ -1,10 +1,10 @@
-import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
+import React from "react";
+import Dialog from "@material-ui/core/Dialog";
 
-import classes from './Modal.module.css';
+import classes from "./Modal.module.css";
 
-import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/index';
+import { connect } from "react-redux";
+import * as actions from "../../../store/actions/index";
 
 const Modal = (props) => {
   return (
@@ -19,18 +19,18 @@ const Modal = (props) => {
       </Dialog>
     </div>
   );
-}
+};
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    showModal: state.modal.showModal
-  }
-}
+    showModal: state.modal.showModal,
+  };
+};
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    closeModal: () => dispatch(actions.closeModal())
-  }
-}
+    closeModal: () => dispatch(actions.closeModal()),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import Layout from './hoc/Layout/Layout';
-import CalendarBoard from './container/CalendarBoard/CalendarBoard';
+import Layout from "./hoc/Layout/Layout";
+import CalendarBoard from "./container/CalendarBoard/CalendarBoard";
 
 function App() {
   return (

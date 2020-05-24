@@ -2,20 +2,20 @@ export {
   openAddModal,
   openCurrentModal,
   openUpdateModal,
-  closeModal
-} from './showModal';
+  closeModal,
+} from "./showModal";
 
 export {
   setSelectedDay,
   fetchToday,
   setPreviousMonth,
   setNextMonth,
-  setSelectedDate
-} from './calendar';
+  setSelectedDate,
+} from "./calendar";
 
 export {
   addSchedule,
   setSelectedSchedule,
   updateSchedule,
-  removeSchedule
-} from './schedule';
+  removeSchedule,
+} from "./schedule";

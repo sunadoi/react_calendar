@@ -1,39 +1,39 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   showModal: false,
-  modalType: null
-}
+  modalType: null,
+};
 
 const reducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.OPEN_ADD_MODAL:
       return {
         ...state,
         showModal: true,
-        modalType: 'add'
-      }
+        modalType: "add",
+      };
     case actionTypes.OPEN_CURRENT_MODAL:
       return {
         ...state,
         showModal: true,
-        modalType: 'current'
-      }
+        modalType: "current",
+      };
     case actionTypes.OPEN_UPDATE_MODAL:
       return {
         ...state,
         showModal: true,
-        modalType: 'update'
-      }
+        modalType: "update",
+      };
     case actionTypes.CLOSE_MODAL:
       return {
         ...state,
         showModal: false,
-        modalType: null
-      }
+        modalType: null,
+      };
     default:
       return state;
   }
-}
+};
 
 export default reducer;
