@@ -8,13 +8,13 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case actionTypes.ADD_SCHEDULE:
-      const updatedSchedules = [...state.schedules]
+      const addedSchedules = [...state.schedules]
       if (action.schedule.title === '') action.schedule.title = '(タイトルなし)'
-      updatedSchedules.push(action.schedule);
+      addedSchedules.push(action.schedule);
 
       return {
         ...state,
-        schedules: updatedSchedules
+        schedules: addedSchedules
       }
     case actionTypes.SET_SELECTED_SCHEDULE:
       const schedules = []
@@ -37,9 +37,19 @@ const reducer = (state = initialState, action) => {
         schedules: selectedSchedules,
         selectedSchedule: selectedSchedule
       }
+    case actionTypes.UPDATE_SCHEDULE:
+      const currentSchedules = [...state.schedules];
+      const updatedSchedule = {...action.schedule, selected: false}
+      const updatedSchedules = currentSchedules.map(schedule => {
+        return schedule.selected === true ? updatedSchedule : schedule
+      })
+
+      return {
+        ...state,
+        schedules: updatedSchedules
+      }
     case actionTypes.REMOVE_SCHEDULE:
       const removedSchedules = state.schedules.filter(schedule => schedule.selected === false);
-      console.log(removedSchedules)
 
       return {
         ...state,

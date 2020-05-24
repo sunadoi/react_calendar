@@ -8,12 +8,12 @@ import PlaceIcon from '@material-ui/icons/Place';
 import SubjectIcon from '@material-ui/icons/Subject';
 
 import Modal from '../../components/UI/Modal/Modal';
-import classes from './AddSchedule.module.css';
+import classes from './UpdateSchedule.module.css';
 
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
-const AddSchedule = props => {
+const UpdateSchedule = props => {
   const [schedule, setSchedule] = useState({
     title: '',
     date: null,
@@ -22,16 +22,21 @@ const AddSchedule = props => {
   });
 
   useEffect(() => {
+    const { title, place, description } = props.selectedSchedule;
     const date = `${props.selectedDay.getFullYear()}年${props.selectedDay.getMonth() + 1}月${props.selectedDay.getDate()}日`
-    setSchedule({...schedule, date: date})
+    setSchedule({...schedule, title, date, place, description})
   }, [])
 
   const onChangeHandler = (event, scheduleName) => {
     setSchedule({...schedule, [scheduleName]: event.target.value});
   }
 
+  const onCloseHandler = () => {
+    props.closeModal();
+  }
+
   const onSubmitHandler = () => {
-    props.addSchedule(schedule);
+    props.updateSchedule(schedule);
     props.closeModal();
   }
 
@@ -85,11 +90,11 @@ const AddSchedule = props => {
 
   return (
     <Modal>
-      <form className={classes.AddSchedule}>
+      <form className={classes.UpdateSchedule}>
         {dialogContent}
         <DialogActions>
-          <Button onClick={() => props.closeModal()} color="primary">戻る</Button>
-          <Button onClick={() => onSubmitHandler()} color="primary">保存</Button>
+          <Button onClick={() => onCloseHandler()} color="primary">戻る</Button>
+          <Button onClick={() => onSubmitHandler()} color="primary">変更</Button>
         </DialogActions>
       </form>
     </Modal>
@@ -99,14 +104,15 @@ const AddSchedule = props => {
 const mapStateToProps = state => {
   return {
     selectedDay: state.calendar.selectedDay,
+    selectedSchedule: state.schedule.selectedSchedule
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     closeModal: () => dispatch(actions.closeModal()),
-    addSchedule: (schedule) => dispatch(actions.addSchedule(schedule))
+    updateSchedule: (schedule) => dispatch(actions.updateSchedule(schedule))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddSchedule);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateSchedule);
