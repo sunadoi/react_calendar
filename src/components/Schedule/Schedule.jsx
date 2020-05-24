@@ -25,9 +25,8 @@ const Schedule = (props) => {
 
     return schedules.map((schedule, index) => {
       return (
-        <div className={classes.Schedule}>
+        <div className={classes.Schedule} key={index}>
           <Button
-            key={index}
             className={classes.ScheduleBtn}
             style={{
               color: "white",
