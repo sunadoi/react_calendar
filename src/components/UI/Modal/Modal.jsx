@@ -1,7 +1,7 @@
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 
-import classes from "./Modal.module.css";
+import classes from "./Modal.module.scss";
 
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";

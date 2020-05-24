@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 
 import * as actions from "../../store/actions/index";
-import classes from "./Schedule.module.css";
+import classes from "./Schedule.module.scss";
 
 const Schedule = (props) => {
   const day = `${props.day.getFullYear()}年${

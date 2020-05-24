@@ -8,7 +8,7 @@ import PlaceIcon from "@material-ui/icons/Place";
 import SubjectIcon from "@material-ui/icons/Subject";
 
 import Modal from "../../components/UI/Modal/Modal";
-import classes from "./AddSchedule.module.css";
+import classes from "./AddSchedule.module.scss";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
