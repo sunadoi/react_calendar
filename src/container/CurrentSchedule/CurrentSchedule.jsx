@@ -43,7 +43,7 @@ const CurrentSchedule = (props) => {
 
   const onDeleteSchedule = () => {
     props.closeModal();
-    props.removeSchedule();
+    props.removeSchedule(props.selectedSchedule.id);
   };
 
   return (
@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     closeModal: () => dispatch(actions.closeModal()),
     openUpdateModal: () => dispatch(actions.openUpdateModal()),
-    removeSchedule: () => dispatch(actions.removeSchedule()),
+    removeSchedule: (id) => dispatch(actions.removeSchedule(id)),
   };
 };
 

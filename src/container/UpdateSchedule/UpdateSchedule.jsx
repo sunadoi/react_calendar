@@ -15,6 +15,7 @@ import * as actions from "../../store/actions/index";
 
 const UpdateSchedule = (props) => {
   const [schedule, setSchedule] = useState({
+    id: "",
     title: "",
     date: null,
     place: "",
@@ -22,11 +23,7 @@ const UpdateSchedule = (props) => {
   });
 
   useEffect(() => {
-    const { title, place, description } = props.selectedSchedule;
-    const date = `${props.selectedDay.getFullYear()}年${
-      props.selectedDay.getMonth() + 1
-    }月${props.selectedDay.getDate()}日`;
-    setSchedule({ ...schedule, title, date, place, description });
+    setSchedule({ ...props.selectedSchedule });
   }, []);
 
   const onChangeHandler = (event, scheduleName) => {
@@ -109,7 +106,6 @@ const UpdateSchedule = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    selectedDay: state.calendar.selectedDay,
     selectedSchedule: state.schedule.selectedSchedule,
   };
 };
