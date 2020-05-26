@@ -9,27 +9,29 @@ export const setSchedules = (schedules) => {
 };
 
 export const fetchSchedules = () => {
-  return (dispatch) => {
-    axios
-      .get("https://react-calendar-c4a47.firebaseio.com/schedules.json")
-      .then((response) => {
-        dispatch(setSchedules(response.data));
-      })
-      .catch((error) => console.log(error));
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        "https://react-calendar-c4a47.firebaseio.com/schedules.json"
+      );
+      dispatch(setSchedules(response.data));
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
 export const addSchedule = (schedule) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     if (schedule.title === "") {
       schedule.title = "(タイトルなし)";
     }
-    axios
-      .post("./schedules.json", schedule)
-      .then((response) => {
-        dispatch(fetchSchedules());
-      })
-      .catch((error) => console.log(error));
+    try {
+      await axios.post("./schedules.json", schedule);
+      dispatch(fetchSchedules());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -42,14 +44,30 @@ export const setSelectedSchedule = (day, index) => {
 };
 
 export const updateSchedule = (schedule) => {
-  return {
-    type: actionTypes.UPDATE_SCHEDULE,
-    schedule: schedule,
+  return async (dispatch) => {
+    const id = schedule.id;
+    delete schedule.id;
+    try {
+      await axios.put(
+        `https://react-calendar-c4a47.firebaseio.com/schedules/${id}.json`,
+        schedule
+      );
+      dispatch(fetchSchedules());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
-export const removeSchedule = () => {
-  return {
-    type: actionTypes.REMOVE_SCHEDULE,
+export const removeSchedule = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(
+        `https://react-calendar-c4a47.firebaseio.com/schedules/${id}.json`
+      );
+      dispatch(fetchSchedules());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
