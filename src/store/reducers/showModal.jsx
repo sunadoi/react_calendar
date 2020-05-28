@@ -25,6 +25,11 @@ const reducer = (state = initialState, action) => {
         showModal: true,
         modalType: "update",
       };
+    case actionTypes.OPEN_ERROR_MODAL:
+      return {
+        ...state,
+        showModal: true,
+      }
     case actionTypes.CLOSE_MODAL:
       return {
         ...state,

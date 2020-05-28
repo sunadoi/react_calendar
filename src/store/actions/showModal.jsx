@@ -18,6 +18,12 @@ export const openUpdateModal = () => {
   };
 };
 
+export const openErrorModal = () => {
+  return {
+    type: actionTypes.OPEN_ERROR_MODAL,
+  };
+};
+
 export const closeModal = () => {
   return {
     type: actionTypes.CLOSE_MODAL,

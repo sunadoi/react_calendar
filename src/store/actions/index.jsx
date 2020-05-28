@@ -2,6 +2,7 @@ export {
   openAddModal,
   openCurrentModal,
   openUpdateModal,
+  openErrorModal,
   closeModal,
 } from "./showModal";
 
