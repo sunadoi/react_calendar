@@ -3,6 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   schedules: null,
   selectedSchedule: null,
+  error: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         schedules: action.schedules,
+      };
+    case actionTypes.ERROR_SCHEDULE:
+      return {
+        ...state,
+        error: action.error,
       };
     case actionTypes.SET_SELECTED_SCHEDULE:
       const schedules = [];

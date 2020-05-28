@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-schedules";
+import { openErrorModal } from "./showModal";
 
 export const setSchedules = (schedules) => {
   return {
@@ -7,6 +8,20 @@ export const setSchedules = (schedules) => {
     schedules: schedules,
   };
 };
+
+export const errorSchedule = (error) => {
+  return async (dispatch) => {
+    await dispatch(openErrorModal());
+    dispatch(setError(error.message));
+  }
+}
+
+export const setError = (error) => {
+  return {
+    type: actionTypes.ERROR_SCHEDULE,
+    error: error,
+  }
+}
 
 export const fetchSchedules = () => {
   return async (dispatch) => {
@@ -16,7 +31,7 @@ export const fetchSchedules = () => {
       );
       dispatch(setSchedules(response.data));
     } catch (error) {
-      console.log(error);
+      dispatch(errorSchedule(error));
     }
   };
 };
@@ -30,7 +45,7 @@ export const addSchedule = (schedule) => {
       await axios.post("./schedules.json", schedule);
       dispatch(fetchSchedules());
     } catch (error) {
-      console.log(error);
+      dispatch(errorSchedule(error));
     }
   };
 };
@@ -54,7 +69,7 @@ export const updateSchedule = (schedule) => {
       );
       dispatch(fetchSchedules());
     } catch (error) {
-      console.log(error);
+      dispatch(errorSchedule(error));
     }
   };
 };
@@ -67,7 +82,7 @@ export const removeSchedule = (id) => {
       );
       dispatch(fetchSchedules());
     } catch (error) {
-      console.log(error);
+      dispatch(errorSchedule(error));
     }
   };
 };
