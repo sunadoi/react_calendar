@@ -6,7 +6,7 @@ import AddSchedule from "../AddSchedule/AddSchedule";
 import CurrentSchedule from "../CurrentSchedule/CurrentSchedule";
 import UpdateSchedule from "../UpdateSchedule/UpdateSchedule";
 
-import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
@@ -144,4 +144,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(CalendarBoard));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(CalendarBoard));

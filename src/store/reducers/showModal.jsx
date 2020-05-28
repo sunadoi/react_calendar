@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showModal: true,
-      }
+      };
     case actionTypes.CLOSE_MODAL:
       return {
         ...state,

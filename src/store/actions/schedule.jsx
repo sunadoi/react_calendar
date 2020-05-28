@@ -13,15 +13,15 @@ export const errorSchedule = (error) => {
   return async (dispatch) => {
     await dispatch(openErrorModal());
     dispatch(setError(error.message));
-  }
-}
+  };
+};
 
 export const setError = (error) => {
   return {
     type: actionTypes.ERROR_SCHEDULE,
     error: error,
-  }
-}
+  };
+};
 
 export const fetchSchedules = () => {
   return async (dispatch) => {
