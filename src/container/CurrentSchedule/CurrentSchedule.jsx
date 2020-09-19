@@ -1,8 +1,7 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { Button, Box } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import PlaceIcon from "@material-ui/icons/Place";
 import SubjectIcon from "@material-ui/icons/Subject";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CloseIcon from "@material-ui/icons/Close";
@@ -19,14 +18,18 @@ const CurrentSchedule = (props) => {
     <DialogContent>
       <div className={classes.content}>
         <p className={classes.title}>{props.selectedSchedule.title}</p>
-        <p className={classes.date}>{props.selectedSchedule.date}</p>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          width="60%"
+          className={classes.dateTime}
+        >
+          <p>{props.selectedSchedule.date}</p>
+          <p>
+            {`${props.selectedSchedule.startTime} ~ ${props.selectedSchedule.endTime}`}
+          </p>
+        </Box>
       </div>
-      {props.selectedSchedule.place && (
-        <div className={classes.information}>
-          <PlaceIcon />
-          <p>{props.selectedSchedule.place}</p>
-        </div>
-      )}
       {props.selectedSchedule.description && (
         <div className={classes.information}>
           <SubjectIcon />

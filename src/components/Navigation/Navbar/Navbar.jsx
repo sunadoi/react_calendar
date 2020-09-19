@@ -3,13 +3,15 @@ import classes from "./Navbar.module.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
 
-import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Button from "@material-ui/core/Button";
-import DatePicker from "react-datepicker";
+import "date-fns";
+
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ja from "date-fns/locale/ja";
+import Logo from "../../../logo.jpg";
 
 const Navbar = (props) => {
   const [dateState, setDateState] = useState(props.date);
@@ -48,16 +50,22 @@ const Navbar = (props) => {
     );
   };
 
+  const jaLocale = {
+    ...ja,
+    options: {
+      weekStartsOn: 0,
+    },
+  };
+
+  registerLocale("ja", jaLocale);
+
   return (
     <div className={classes.Navbar}>
       <ul>
         <li>
-          <ViewHeadlineIcon />
+          <img src={Logo} style={{ width: "60px" }} alt="転クエLogo" />
         </li>
-        <li>
-          <CalendarTodayIcon />
-        </li>
-        <li>カレンダー</li>
+        <li>転クエカレンダー</li>
         <li>
           <Button variant="outlined" onClick={() => props.onFetchToday()}>
             今日
@@ -83,6 +91,8 @@ const Navbar = (props) => {
           selected={selectedDate}
           onChange={(date) => onSelectedDateHandler(date)}
           customInput={<CustomInput />}
+          locale="ja"
+          dateFormat="yyyy/MM/dd"
         />
       </ul>
     </div>
