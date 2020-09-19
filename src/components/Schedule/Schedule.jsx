@@ -25,27 +25,33 @@ const Schedule = (props) => {
         : null;
     });
 
+    const colorList = {
+      誰でも: "all",
+      プレミアム: "premium",
+      スーパープレミアム: "superPremium",
+    };
+
     return schedules.map((schedule, index) => {
       return (
-        <div className={classes.Schedule} key={index}>
+        <div className={classes[colorList[schedule.plan]]} key={index}>
           <Button
             className={classes.ScheduleBtn}
+            label="btn-label"
             style={{
               color: "white",
               fontSize: "12px",
               padding: "2px",
-              textTransform: "none",
             }}
             onClick={(event) => showSchedule(event, schedule, day, index)}
           >
-            {schedule.title}
+            {`${schedule.startTime} ${schedule.title}`}
           </Button>
         </div>
       );
     });
   };
 
-  return <div>{renderSchedule()}</div>;
+  return <>{renderSchedule()}</>;
 };
 
 const mapStateToProps = (state) => {

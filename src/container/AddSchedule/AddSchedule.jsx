@@ -171,7 +171,7 @@ const AddSchedule = (props) => {
         <LabelOutlinedIcon className={classes.Icon} />
         <Select
           value={schedule.plan}
-          style={{ width: "120px" }}
+          style={{ width: "200px" }}
           onChange={changePlanHandler}
         >
           <MenuItem value="誰でも">誰でも</MenuItem>
