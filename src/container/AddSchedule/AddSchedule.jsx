@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
+import {
+  DialogActions,
+  DialogContent,
+  Box,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@material-ui/core";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
-import PlaceIcon from "@material-ui/icons/Place";
 import SubjectIcon from "@material-ui/icons/Subject";
 
 import Modal from "../../components/UI/Modal/Modal";
@@ -17,9 +23,61 @@ const AddSchedule = (props) => {
   const [schedule, setSchedule] = useState({
     title: "",
     date: null,
-    place: "",
+    startTime: "",
+    endTime: "",
     description: "",
   });
+
+  const timeList = [
+    "0:00",
+    "0:30",
+    "1:00",
+    "1:30",
+    "2:00",
+    "2:30",
+    "3:00",
+    "3:30",
+    "4:00",
+    "4:30",
+    "5:00",
+    "5:30",
+    "6:00",
+    "6:30",
+    "7:00",
+    "7:30",
+    "8:00",
+    "8:30",
+    "9:00",
+    "9:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+    "17:00",
+    "17:30",
+    "18:00",
+    "18:30",
+    "19:00",
+    "19:30",
+    "20:00",
+    "20:30",
+    "21:00",
+    "21:30",
+    "22:00",
+    "22:30",
+    "23:00",
+    "23:30",
+  ]
 
   useEffect(() => {
     const date = `${props.selectedDay.getFullYear()}年${
@@ -32,6 +90,14 @@ const AddSchedule = (props) => {
     setSchedule({ ...schedule, [scheduleName]: event.target.value });
   };
 
+  const changeStartTimeHandler = (event) => {
+    setSchedule({ ...schedule, startTime: event.target.value });
+  };
+
+  const changeEndTimeHandler = (event) => {
+    setSchedule({ ...schedule, endTime: event.target.value });
+  };
+
   const onSubmitHandler = () => {
     props.addSchedule(schedule);
     props.closeModal();
@@ -41,7 +107,7 @@ const AddSchedule = (props) => {
     <DialogContent>
       <TextField
         autoFocus
-        placeholder="タイトルと日時を追加"
+        placeholder="タイトルを追加"
         margin="dense"
         fullWidth
         size="medium"
@@ -49,30 +115,50 @@ const AddSchedule = (props) => {
         value={schedule.title}
         onChange={(event) => onChangeHandler(event, "title")}
       />
-      <div>
-        <AccessTimeIcon />
+      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+        <CalendarTodayIcon className={classes.Icon} />
         <TextField
-          placeholder="日時を追加"
+          placeholder="日付を追加"
           margin="dense"
           size="medium"
           name="date"
           value={schedule.date}
           onChange={(event) => onChangeHandler(event, "date")}
         />
-      </div>
-      <div>
-        <PlaceIcon />
-        <TextField
-          placeholder="場所を追加"
-          margin="dense"
-          size="medium"
-          name="place"
-          value={schedule.place}
-          onChange={(event) => onChangeHandler(event, "place")}
-        />
-      </div>
-      <div>
-        <SubjectIcon />
+      </Box>
+      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+        <AccessTimeIcon className={classes.Icon} />
+        <div>
+          <InputLabel>開始時間</InputLabel>
+          <Select
+            value={schedule.startTime}
+            style={{ width: "120px", marginRight: "32px" }}
+            onChange={changeStartTimeHandler}
+          >
+            {timeList.map((time) => {
+              return (
+                <MenuItem key={time} value={time}>{time}</MenuItem>
+              );
+            })}
+          </Select>
+        </div>
+        <div>
+          <InputLabel>終了時間</InputLabel>
+          <Select
+            value={schedule.endTime}
+            style={{ width: "120px" }}
+            onChange={changeEndTimeHandler}
+          >
+            {timeList.map((time) => {
+              return (
+                <MenuItem key={time} value={time}>{time}</MenuItem>
+              );
+            })}
+          </Select>
+        </div>
+      </Box>
+      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+        <SubjectIcon className={classes.Icon} />
         <TextField
           placeholder="説明を追加"
           margin="dense"
@@ -81,7 +167,7 @@ const AddSchedule = (props) => {
           value={schedule.description}
           onChange={(event) => onChangeHandler(event, "description")}
         />
-      </div>
+      </Box>
     </DialogContent>
   );
 
