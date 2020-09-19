@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
+import { Button, Box } from "@material-ui/core";
 
 import * as actions from "../../store/actions/index";
 import classes from "./Schedule.module.scss";
@@ -33,10 +33,9 @@ const Schedule = (props) => {
 
     return schedules.map((schedule, index) => {
       return (
-        <div className={classes[colorList[schedule.plan]]} key={index}>
+        <Box className={classes[colorList[schedule.plan]]} key={index}>
           <Button
             className={classes.ScheduleBtn}
-            label="btn-label"
             style={{
               color: "white",
               fontSize: "12px",
@@ -46,7 +45,7 @@ const Schedule = (props) => {
           >
             {`${schedule.startTime} ${schedule.title}`}
           </Button>
-        </div>
+        </Box>
       );
     });
   };

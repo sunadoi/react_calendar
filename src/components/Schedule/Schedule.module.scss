@@ -18,9 +18,10 @@
 
 .ScheduleBtn {
   width: 100%;
-  &.MuiButton-label {
-    color: black;
-    display: inline-block;
-    justify-content: start;
-  }
+}
+
+.ScheduleBtn span {
+  display: flex;
+  justify-content: start;
+  margin-left: 8px;
 }
