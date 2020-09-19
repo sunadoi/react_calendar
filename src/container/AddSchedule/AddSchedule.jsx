@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
 import SubjectIcon from "@material-ui/icons/Subject";
 
 import Modal from "../../components/UI/Modal/Modal";
@@ -23,8 +24,9 @@ const AddSchedule = (props) => {
   const [schedule, setSchedule] = useState({
     title: "",
     date: null,
-    startTime: "",
-    endTime: "",
+    startTime: "21:00",
+    endTime: "22:00",
+    plan: "誰でも",
     description: "",
   });
 
@@ -77,7 +79,7 @@ const AddSchedule = (props) => {
     "22:30",
     "23:00",
     "23:30",
-  ]
+  ];
 
   useEffect(() => {
     const date = `${props.selectedDay.getFullYear()}年${
@@ -96,6 +98,10 @@ const AddSchedule = (props) => {
 
   const changeEndTimeHandler = (event) => {
     setSchedule({ ...schedule, endTime: event.target.value });
+  };
+
+  const changePlanHandler = (event) => {
+    setSchedule({ ...schedule, plan: event.target.value });
   };
 
   const onSubmitHandler = () => {
@@ -137,7 +143,9 @@ const AddSchedule = (props) => {
           >
             {timeList.map((time) => {
               return (
-                <MenuItem key={time} value={time}>{time}</MenuItem>
+                <MenuItem key={time} value={time}>
+                  {time}
+                </MenuItem>
               );
             })}
           </Select>
@@ -151,11 +159,25 @@ const AddSchedule = (props) => {
           >
             {timeList.map((time) => {
               return (
-                <MenuItem key={time} value={time}>{time}</MenuItem>
+                <MenuItem key={time} value={time}>
+                  {time}
+                </MenuItem>
               );
             })}
           </Select>
         </div>
+      </Box>
+      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+        <LabelOutlinedIcon className={classes.Icon} />
+        <Select
+          value={schedule.plan}
+          style={{ width: "120px" }}
+          onChange={changePlanHandler}
+        >
+          <MenuItem value="誰でも">誰でも</MenuItem>
+          <MenuItem value="プレミアム">プレミアム以上限定</MenuItem>
+          <MenuItem value="スーパープレミアム">スーパープレミアム限定</MenuItem>
+        </Select>
       </Box>
       <Box display="flex" width="80%" className={classes.ScheduleItem}>
         <SubjectIcon className={classes.Icon} />
