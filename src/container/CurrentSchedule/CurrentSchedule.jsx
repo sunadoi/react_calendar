@@ -52,12 +52,13 @@ const CurrentSchedule = (props) => {
   return (
     <Modal>
       <DialogActions>
-        <Button onClick={() => onEditSchedule()} color="primary">
+        {/* とりあえず編集と削除は非表示にする */}
+        {/* <Button onClick={() => onEditSchedule()} color="primary">
           <EditIcon />
         </Button>
         <Button onClick={() => onDeleteSchedule()} color="primary">
           <DeleteIcon />
-        </Button>
+        </Button> */}
         <Button onClick={() => props.closeModal()} color="primary">
           <CloseIcon />
         </Button>
