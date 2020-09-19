@@ -13,6 +13,7 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
 import SubjectIcon from "@material-ui/icons/Subject";
+import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 
 import Modal from "../../components/UI/Modal/Modal";
 import classes from "./AddSchedule.module.scss";
@@ -28,6 +29,7 @@ const AddSchedule = (props) => {
     endTime: "22:00",
     plan: "誰でも",
     description: "",
+    createdBy: "",
   });
 
   const timeList = [
@@ -92,18 +94,6 @@ const AddSchedule = (props) => {
     setSchedule({ ...schedule, [scheduleName]: event.target.value });
   };
 
-  const changeStartTimeHandler = (event) => {
-    setSchedule({ ...schedule, startTime: event.target.value });
-  };
-
-  const changeEndTimeHandler = (event) => {
-    setSchedule({ ...schedule, endTime: event.target.value });
-  };
-
-  const changePlanHandler = (event) => {
-    setSchedule({ ...schedule, plan: event.target.value });
-  };
-
   const onSubmitHandler = () => {
     props.addSchedule(schedule);
     props.closeModal();
@@ -139,7 +129,7 @@ const AddSchedule = (props) => {
           <Select
             value={schedule.startTime}
             style={{ width: "120px", marginRight: "32px" }}
-            onChange={changeStartTimeHandler}
+            onChange={(event) => onChangeHandler(event, "startTime")}
           >
             {timeList.map((time) => {
               return (
@@ -155,7 +145,7 @@ const AddSchedule = (props) => {
           <Select
             value={schedule.endTime}
             style={{ width: "120px" }}
-            onChange={changeEndTimeHandler}
+            onChange={(event) => onChangeHandler(event, "endTime")}
           >
             {timeList.map((time) => {
               return (
@@ -172,7 +162,7 @@ const AddSchedule = (props) => {
         <Select
           value={schedule.plan}
           style={{ width: "200px" }}
-          onChange={changePlanHandler}
+          onChange={(event) => onChangeHandler(event, "plan")}
         >
           <MenuItem value="誰でも">誰でも</MenuItem>
           <MenuItem value="プレミアム">プレミアム以上限定</MenuItem>
@@ -188,6 +178,17 @@ const AddSchedule = (props) => {
           name="description"
           value={schedule.description}
           onChange={(event) => onChangeHandler(event, "description")}
+        />
+      </Box>
+      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+        <PeopleAltOutlinedIcon className={classes.Icon} />
+        <TextField
+          placeholder="主催者を追加"
+          margin="dense"
+          size="medium"
+          name="createdBy"
+          value={schedule.createdBy}
+          onChange={(event) => onChangeHandler(event, "createdBy")}
         />
       </Box>
     </DialogContent>

@@ -6,6 +6,7 @@ import SubjectIcon from "@material-ui/icons/Subject";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CloseIcon from "@material-ui/icons/Close";
 import EditIcon from "@material-ui/icons/Edit";
+import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 
 import Modal from "../../components/UI/Modal/Modal";
 import classes from "./CurrentSchedule.module.scss";
@@ -30,11 +31,27 @@ const CurrentSchedule = (props) => {
           </p>
         </Box>
       </div>
+      {props.selectedSchedule.createdBy && (
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          width="70px"
+          className={classes.createdBy}
+        >
+          <PeopleAltOutlinedIcon />
+          <p>{props.selectedSchedule.createdBy}</p>
+        </Box>
+      )}
       {props.selectedSchedule.description && (
-        <div className={classes.information}>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          width="70px"
+          className={classes.information}
+        >
           <SubjectIcon />
           <p>{props.selectedSchedule.description}</p>
-        </div>
+        </Box>
       )}
     </DialogContent>
   );
