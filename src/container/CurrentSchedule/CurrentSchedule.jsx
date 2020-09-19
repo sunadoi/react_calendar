@@ -21,7 +21,7 @@ const CurrentSchedule = (props) => {
         <Box
           display="flex"
           justifyContent="space-between"
-          width="60%"
+          width="70%"
           className={classes.dateTime}
         >
           <p>{props.selectedSchedule.date}</p>
