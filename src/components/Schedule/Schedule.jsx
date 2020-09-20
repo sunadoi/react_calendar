@@ -26,7 +26,7 @@ const Schedule = (props) => {
     });
 
     const colorList = {
-      誰でも: "all",
+      制限なし: "all",
       プレミアム: "premium",
       スーパープレミアム: "superPremium",
     };

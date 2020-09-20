@@ -31,15 +31,15 @@ const CurrentSchedule = (props) => {
           </p>
         </Box>
       </div>
-      {props.selectedSchedule.createdBy && (
+      {props.selectedSchedule.owner && (
         <Box
           display="flex"
           justifyContent="space-between"
           width="70px"
-          className={classes.createdBy}
+          className={classes.owner}
         >
           <PeopleAltOutlinedIcon />
-          <p>{props.selectedSchedule.createdBy}</p>
+          <p>{props.selectedSchedule.owner}</p>
         </Box>
       )}
       {props.selectedSchedule.description && (
