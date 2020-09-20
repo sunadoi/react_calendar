@@ -5,17 +5,15 @@ import * as actions from "../../../store/actions/index";
 
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import Button from "@material-ui/core/Button";
+import LabelIcon from "@material-ui/icons/Label";
+import { Button, Box } from "@material-ui/core";
 import "date-fns";
-
-import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import ja from "date-fns/locale/ja";
 import Logo from "../../../logo.jpg";
 
 const Navbar = (props) => {
   const [dateState, setDateState] = useState(props.date);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [displayDate, setDisplayDate] = useState(props.date);
 
   useEffect(() => {
     props.onFetchToday();
@@ -24,6 +22,10 @@ const Navbar = (props) => {
   useEffect(() => {
     if (props.date) {
       setDateState(props.date);
+
+      const year = props.date.getFullYear();
+      const month = props.date.getMonth() + 1;
+      setDisplayDate(`${year}年${month}月`);
     }
   }, [props.date]);
 
@@ -35,66 +37,72 @@ const Navbar = (props) => {
     props.onNextMonth();
   };
 
-  const onSelectedDateHandler = (date) => {
-    setSelectedDate(date);
-    props.onSelectedDate(date);
-  };
-
-  const CustomInput = ({ onClick }) => {
-    if (!dateState) return new Date().getDate();
-
-    return (
-      <Button className="custom-input" onClick={onClick}>
-        {`${dateState.getFullYear()}年${dateState.getMonth() + 1}月`}
-      </Button>
-    );
-  };
-
-  const jaLocale = {
-    ...ja,
-    options: {
-      weekStartsOn: 0,
-    },
-  };
-
-  registerLocale("ja", jaLocale);
-
   return (
     <div className={classes.Navbar}>
-      <ul>
-        <li>
-          <img src={Logo} style={{ width: "60px" }} alt="転クエLogo" />
-        </li>
-        <li>転クエカレンダー</li>
-        <li>
-          <Button variant="outlined" onClick={() => props.onFetchToday()}>
-            今日
-          </Button>
-        </li>
-        <li style={{ margin: "0" }}>
-          <Button
-            style={{ maxWidth: "80%", padding: "8px 0" }}
-            onClick={() => onPreviousMonthHandler()}
-          >
-            <ArrowBackIosIcon style={{ width: "16px" }} />
-          </Button>
-        </li>
-        <li style={{ margin: "0" }}>
-          <Button
-            style={{ maxWidth: "80%", padding: "8px 0" }}
-            onClick={() => onNextMonthHandler()}
-          >
-            <ArrowForwardIosIcon style={{ width: "16px" }} />
-          </Button>
-        </li>
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => onSelectedDateHandler(date)}
-          customInput={<CustomInput />}
-          locale="ja"
-          dateFormat="yyyy/MM/dd"
-        />
-      </ul>
+      <Box display="flex" justifyContent="space-between">
+        <ul>
+          <li>
+            <img src={Logo} style={{ width: "60px" }} alt="転クエLogo" />
+          </li>
+          <li>転クエカレンダー</li>
+          <li>
+            <Button variant="outlined" onClick={() => props.onFetchToday()}>
+              今日
+            </Button>
+          </li>
+          <li style={{ margin: "0" }}>
+            <Button
+              style={{ maxWidth: "80%", padding: "8px 0" }}
+              onClick={() => onPreviousMonthHandler()}
+            >
+              <ArrowBackIosIcon style={{ width: "16px" }} />
+            </Button>
+          </li>
+          <li style={{ margin: "0" }}>
+            <Button
+              style={{ maxWidth: "80%", padding: "8px 0" }}
+              onClick={() => onNextMonthHandler()}
+            >
+              <ArrowForwardIosIcon style={{ width: "16px" }} />
+            </Button>
+          </li>
+          <li>
+            <p style={{ fontSize: "20px" }}>{displayDate}</p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <LabelIcon className={classes.AllIcon} />
+              <div>制限なし</div>
+            </Box>
+          </li>
+          <li>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <LabelIcon className={classes.PremiumIcon} />
+              <div>プレミアム以上限定</div>
+            </Box>
+          </li>
+          <li>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <LabelIcon className={classes.SuperPremiumIcon} />
+              <div>スーパープレミアム以上限定</div>
+            </Box>
+          </li>
+        </ul>
+      </Box>
     </div>
   );
 };
