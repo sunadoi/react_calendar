@@ -5,7 +5,7 @@ import * as actions from "../../../store/actions/index";
 
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import LabelIcon from '@material-ui/icons/Label';
+import LabelIcon from "@material-ui/icons/Label";
 import { Button, Box } from "@material-ui/core";
 import "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
@@ -72,19 +72,31 @@ const Navbar = (props) => {
         </ul>
         <ul>
           <li>
-            <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
               <LabelIcon className={classes.AllIcon} />
               <div>制限なし</div>
             </Box>
           </li>
           <li>
-            <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
               <LabelIcon className={classes.PremiumIcon} />
               <div>プレミアム以上限定</div>
             </Box>
           </li>
           <li>
-            <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
               <LabelIcon className={classes.SuperPremiumIcon} />
               <div>スーパープレミアム以上限定</div>
             </Box>

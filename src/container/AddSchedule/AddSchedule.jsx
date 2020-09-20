@@ -34,7 +34,7 @@ const AddSchedule = (props) => {
     owner: "",
   });
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const timeList = [
     "0:00",
@@ -133,7 +133,7 @@ const AddSchedule = (props) => {
 
   const dialogContent = (
     <DialogContent>
-      {error && <p style={{color: "red"}}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <Box display="flex" width="80%" className={classes.ScheduleItem}>
         <TitleIcon className={classes.Icon} />
         <TextField
@@ -157,7 +157,7 @@ const AddSchedule = (props) => {
       <Box display="flex" width="80%" className={classes.ScheduleItem}>
         <AccessTimeIcon className={classes.Icon} />
         <div>
-          <InputLabel style={{fontSize: "12px"}}>開始時間</InputLabel>
+          <InputLabel style={{ fontSize: "12px" }}>開始時間</InputLabel>
           <Select
             value={schedule.startTime}
             style={{ width: "120px", marginRight: "32px" }}
@@ -173,7 +173,7 @@ const AddSchedule = (props) => {
           </Select>
         </div>
         <div>
-          <InputLabel style={{fontSize: "12px"}}>終了時間</InputLabel>
+          <InputLabel style={{ fontSize: "12px" }}>終了時間</InputLabel>
           <Select
             value={schedule.endTime}
             style={{ width: "120px" }}
