@@ -5,6 +5,9 @@
   height: 100vh;
   text-align: center;
   font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   p {
     margin-top: 5px;
