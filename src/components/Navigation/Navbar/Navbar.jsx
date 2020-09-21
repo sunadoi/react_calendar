@@ -79,7 +79,7 @@ const Navbar = (props) => {
             >
               <p style={{ marginTop: "0", marginRight: "4px" }}>🔵</p>
               {/* <LabelIcon className={classes.AllIcon} /> */}
-              <div>制限なし</div>
+              <div>全員参加可</div>
             </Box>
           </li>
           <li>

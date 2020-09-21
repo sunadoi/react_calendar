@@ -202,7 +202,7 @@ const AddSchedule = (props) => {
           style={{ width: "200px" }}
           onChange={(event) => onChangeHandler(event, "plan")}
         >
-          <MenuItem value="all">制限なし</MenuItem>
+          <MenuItem value="all">全員参加可</MenuItem>
           <MenuItem value="premium">プレミアム以上限定</MenuItem>
           <MenuItem value="superPremium">スーパープレミアム限定</MenuItem>
         </Select>
