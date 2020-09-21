@@ -5,9 +5,10 @@
   height: 100vh;
   text-align: center;
   font-size: 12px;
-  overflow: hidden;
+  overflow: scroll;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow-y: scroll;
 
   p {
     margin-top: 5px;
@@ -24,5 +25,5 @@
 }
 
 .notToday {
-  padding-top: 8px;
+  padding-top: 4px;
 }
