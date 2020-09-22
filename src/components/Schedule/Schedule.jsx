@@ -25,12 +25,6 @@ const Schedule = (props) => {
         : null;
     });
 
-    const colorList = {
-      制限なし: "all",
-      プレミアム: "premium",
-      スーパープレミアム: "superPremium",
-    };
-
     return schedules.map((schedule, index) => {
       let circle;
       switch (schedule.plan) {

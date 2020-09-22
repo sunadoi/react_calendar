@@ -23,16 +23,25 @@ const CalendarElement = (props) => {
   const day =
     props.day.getDate() === 1 && !isToday ? firstDay : props.day.getDate();
 
+  console.log(props.weekDay);
+
+  let dayColor;
+  if (props.weekDay % 7 === 6 && !isToday) {
+    dayColor = "blue";
+  } else if (props.weekDay % 7 === 0 && !isToday) {
+    dayColor = "red";
+  }
+
   return (
     <div
       className={classes.CalendarEl}
-      style={{ height: `calc(85vh / ${props.weekLength})` }}
+      style={{ height: `calc(86vh / ${props.weekLength})` }}
       onClick={() => onClickHandler(props.day)}
     >
       <Box display="flex" justifyContent="center">
         <p
           className={isToday ? classes.today : classes.notToday}
-          style={{ opacity: opacity }}
+          style={{ opacity: opacity, color: dayColor }}
         >
           {day}
         </p>
