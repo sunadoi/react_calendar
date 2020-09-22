@@ -24,6 +24,7 @@ const reducer = (state = initialState, action) => {
         return schedule.date === action.day;
       });
 
+      // selectedのプロパティ必要ない？？
       const selectedSchedules = selectedDaySchedules.map((schedule, index) => {
         schedule.selected = index === action.index;
 
@@ -34,7 +35,7 @@ const reducer = (state = initialState, action) => {
 
       return {
         ...state,
-        schedules: selectedSchedules,
+        // schedules: selectedSchedules,
         selectedSchedule: selectedSchedule,
       };
     case actionTypes.REMOVE_SCHEDULE:
