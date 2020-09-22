@@ -60,7 +60,7 @@ const Schedule = (props) => {
           ) : (
             <Button
               className={classes.ScheduleBtn}
-              style={{ padding: "4px 8px" }}
+              style={{ padding: "4px 8px", textTransform: "none" }}
               onClick={(event) => showSchedule(event, schedule, day, index)}
             >
               {circle}
