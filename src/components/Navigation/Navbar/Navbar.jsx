@@ -77,8 +77,9 @@ const Navbar = (props) => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <LabelIcon className={classes.AllIcon} />
-              <div>制限なし</div>
+              <p style={{ marginTop: "0", marginRight: "4px" }}>🔵</p>
+              {/* <LabelIcon className={classes.AllIcon} /> */}
+              <div>全員参加可</div>
             </Box>
           </li>
           <li>
@@ -87,7 +88,8 @@ const Navbar = (props) => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <LabelIcon className={classes.PremiumIcon} />
+              <p style={{ marginTop: "0", marginRight: "4px" }}>🟢</p>
+              {/* <LabelIcon className={classes.PremiumIcon} /> */}
               <div>プレミアム以上限定</div>
             </Box>
           </li>
@@ -97,7 +99,8 @@ const Navbar = (props) => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <LabelIcon className={classes.SuperPremiumIcon} />
+              <p style={{ marginTop: "0", marginRight: "4px" }}>🔴</p>
+              {/* <LabelIcon className={classes.SuperPremiumIcon} /> */}
               <div>スーパープレミアム以上限定</div>
             </Box>
           </li>

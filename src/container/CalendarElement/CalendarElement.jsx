@@ -1,6 +1,7 @@
 import React from "react";
 import Schedule from "../../components/Schedule/Schedule";
 import classes from "./CalendarElement.module.scss";
+import { Box } from "@material-ui/core";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
@@ -18,10 +19,9 @@ const CalendarElement = (props) => {
     props.day.getMonth() === new Date().getMonth() &&
     props.day.getDate() === new Date().getDate();
 
-  const color = isToday ? "red" : "black";
-
   const firstDay = `${props.day.getMonth() + 1}月${props.day.getDate()}日`;
-  const day = props.day.getDate() === 1 ? firstDay : props.day.getDate();
+  const day =
+    props.day.getDate() === 1 && !isToday ? firstDay : props.day.getDate();
 
   return (
     <div
@@ -29,7 +29,14 @@ const CalendarElement = (props) => {
       style={{ height: `calc(85vh / ${props.weekLength})` }}
       onClick={() => onClickHandler(props.day)}
     >
-      <p style={{ opacity: opacity, color: color }}>{day}</p>
+      <Box display="flex" justifyContent="center">
+        <p
+          className={isToday ? classes.today : classes.notToday}
+          style={{ opacity: opacity }}
+        >
+          {day}
+        </p>
+      </Box>
       <Schedule day={props.day} />
     </div>
   );

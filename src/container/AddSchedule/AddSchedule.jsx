@@ -29,7 +29,7 @@ const AddSchedule = (props) => {
     date: new Date(),
     startTime: "21:00",
     endTime: "22:00",
-    plan: "制限なし",
+    plan: "all",
     description: "",
     owner: "",
   });
@@ -37,24 +37,6 @@ const AddSchedule = (props) => {
   const [error, setError] = useState("");
 
   const timeList = [
-    "0:00",
-    "0:30",
-    "1:00",
-    "1:30",
-    "2:00",
-    "2:30",
-    "3:00",
-    "3:30",
-    "4:00",
-    "4:30",
-    "5:00",
-    "5:30",
-    "6:00",
-    "6:30",
-    "7:00",
-    "7:30",
-    "8:00",
-    "8:30",
     "9:00",
     "9:30",
     "10:00",
@@ -220,9 +202,9 @@ const AddSchedule = (props) => {
           style={{ width: "200px" }}
           onChange={(event) => onChangeHandler(event, "plan")}
         >
-          <MenuItem value="制限なし">制限なし</MenuItem>
-          <MenuItem value="プレミアム">プレミアム以上限定</MenuItem>
-          <MenuItem value="スーパープレミアム">スーパープレミアム限定</MenuItem>
+          <MenuItem value="all">全員参加可</MenuItem>
+          <MenuItem value="premium">プレミアム以上限定</MenuItem>
+          <MenuItem value="superPremium">スーパープレミアム限定</MenuItem>
         </Select>
       </Box>
     </DialogContent>

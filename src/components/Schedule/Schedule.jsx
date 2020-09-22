@@ -32,18 +32,29 @@ const Schedule = (props) => {
     };
 
     return schedules.map((schedule, index) => {
+      let circle;
+      switch (schedule.plan) {
+        case "all":
+          circle = <p style={{ marginTop: "0", marginRight: "4px" }}>🔵</p>;
+          break;
+        case "premium":
+          circle = <p style={{ marginTop: "0", marginRight: "4px" }}>🟢</p>;
+          break;
+        case "superPremium":
+          circle = <p style={{ marginTop: "0", marginRight: "4px" }}>🔴</p>;
+          break;
+      }
+
       return (
-        <Box className={classes[colorList[schedule.plan]]} key={index}>
+        <Box key={index}>
           <Button
             className={classes.ScheduleBtn}
-            style={{
-              color: "white",
-              fontSize: "12px",
-              padding: "2px",
-            }}
             onClick={(event) => showSchedule(event, schedule, day, index)}
           >
-            {`${schedule.startTime} ${schedule.title}`}
+            {circle}
+            <p
+              style={{ margin: "0", fontSize: "12px" }}
+            >{`${schedule.startTime} ${schedule.title}`}</p>
           </Button>
         </Box>
       );
