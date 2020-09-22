@@ -40,7 +40,7 @@ export const fetchSchedules = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        "https://react-calendar-c4a47.firebaseio.com/schedules.json"
+        `${process.env.REACT_APP_FIREBASE_URL}/schedules.json`
       );
       dispatch(setSchedules(response.data));
     } catch (error) {
@@ -55,7 +55,7 @@ export const addSchedule = (schedule) => {
       schedule.title = "(タイトルなし)";
     }
     try {
-      await axios.post("./schedules.json", schedule);
+      await axios.post(`${process.env.REACT_APP_FIREBASE_URL}/schedules.json`, schedule);
       dispatch(fetchSchedules());
     } catch (error) {
       dispatch(errorSchedule(error));
@@ -77,7 +77,7 @@ export const updateSchedule = (schedule) => {
     delete schedule.id;
     try {
       await axios.put(
-        `https://react-calendar-c4a47.firebaseio.com/schedules/${id}.json`,
+        `${process.env.REACT_APP_FIREBASE_URL}/schedules/${id}.json`,
         schedule
       );
       dispatch(fetchSchedules());
@@ -91,7 +91,7 @@ export const removeSchedule = (id) => {
   return async (dispatch) => {
     try {
       await axios.delete(
-        `https://react-calendar-c4a47.firebaseio.com/schedules/${id}.json`
+        `${process.env.REACT_APP_FIREBASE_URL}/schedules/${id}.json`
       );
       dispatch(fetchSchedules());
     } catch (error) {
