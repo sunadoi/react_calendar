@@ -23,8 +23,6 @@ const CalendarElement = (props) => {
   const day =
     props.day.getDate() === 1 && !isToday ? firstDay : props.day.getDate();
 
-  console.log(props.weekDay);
-
   let dayColor;
   if (props.weekDay % 7 === 6 && !isToday) {
     dayColor = "blue";

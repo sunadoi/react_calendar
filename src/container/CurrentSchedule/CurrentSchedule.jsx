@@ -19,37 +19,29 @@ const CurrentSchedule = (props) => {
     <DialogContent>
       <div className={classes.content}>
         <p className={classes.title}>{props.selectedSchedule.title}</p>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          width="70%"
-          className={classes.dateTime}
-        >
-          <p>{props.selectedSchedule.date}</p>
-          <p>
-            {`${props.selectedSchedule.startTime} ~ ${props.selectedSchedule.endTime}`}
-          </p>
-        </Box>
+        {props.selectedSchedule.plan !== "holiday" && (
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            width="70%"
+            className={classes.dateTime}
+          >
+            <p>{props.selectedSchedule.date}</p>
+            <p>
+              {`${props.selectedSchedule.startTime} ~ ${props.selectedSchedule.endTime}`}
+            </p>
+          </Box>
+        )}
       </div>
       {props.selectedSchedule.owner && (
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          width="70px"
-          className={classes.owner}
-        >
-          <PeopleAltOutlinedIcon />
+        <Box display="flex" alignItems="center" className={classes.owner}>
+          <PeopleAltOutlinedIcon style={{ marginRight: "8px" }} />
           <p>{props.selectedSchedule.owner}</p>
         </Box>
       )}
       {props.selectedSchedule.description && (
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          width="70px"
-          className={classes.information}
-        >
-          <SubjectIcon />
+        <Box display="flex" alignItems="center" className={classes.information}>
+          <SubjectIcon style={{ marginRight: "8px" }} />
           <p>{props.selectedSchedule.description}</p>
         </Box>
       )}

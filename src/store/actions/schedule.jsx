@@ -3,9 +3,22 @@ import axios from "../../axios-schedules";
 import { openErrorModal } from "./showModal";
 
 export const setSchedules = (schedules) => {
+  const orderedSchedules = Object.keys(schedules).map((scheduleKey) => {
+    return Object.assign(schedules[scheduleKey], { id: scheduleKey });
+  });
+
+  // スケジュールを時間順で並び替える
+  orderedSchedules.sort(function (a, b) {
+    if (a.startTime < b.startTime) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+
   return {
     type: actionTypes.SET_SCHEDULES,
-    schedules: schedules,
+    schedules: orderedSchedules,
   };
 };
 
