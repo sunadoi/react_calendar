@@ -96,6 +96,7 @@ const CalendarBoard = (props) => {
           return (
             <CalendarElement
               day={day}
+              weekDay={dayIndex}
               weekLength={dateState.length}
               key={dayIndex}
             />

@@ -19,25 +19,18 @@ const reducer = (state = initialState, action) => {
         error: action.error,
       };
     case actionTypes.SET_SELECTED_SCHEDULE:
-      const schedules = [];
-      const selectedSchedules = { ...state.schedules };
-      let count = 0; //countによって日付が同じ日の中でindexをカウントする
-      Object.keys(selectedSchedules).map((scheduleKey) => {
-        if (selectedSchedules[scheduleKey].date === action.day) {
-          schedules.push({
-            ...selectedSchedules[scheduleKey],
-            id: scheduleKey,
-          });
-          count === action.index
-            ? (selectedSchedules[scheduleKey].selected = true)
-            : (selectedSchedules[scheduleKey].selected = false); //同じ日付の中でもselectedにするものを1つだけにするため
-          count += 1;
-        } else {
-          return (selectedSchedules[scheduleKey].selected = false);
-        }
+      const schedules = [...state.schedules];
+      const selectedDaySchedules = schedules.filter((schedule) => {
+        return schedule.date === action.day;
       });
 
-      const selectedSchedule = schedules[action.index];
+      const selectedSchedules = selectedDaySchedules.map((schedule, index) => {
+        schedule.selected = index === action.index;
+
+        return schedule;
+      });
+
+      const selectedSchedule = selectedSchedules[action.index];
 
       return {
         ...state,

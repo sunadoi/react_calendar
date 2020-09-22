@@ -12,24 +12,20 @@ const Schedule = (props) => {
 
   const showSchedule = (event, schedule, day, index) => {
     event.stopPropagation();
+
     props.setSelectedSchedule(day, index);
     props.openCurrentModal(schedule);
   };
 
   const renderSchedule = () => {
     if (!props.schedules) return;
+
     const schedules = [];
     Object.keys(props.schedules).map((scheduleKey) => {
       return props.schedules[scheduleKey].date === day
         ? schedules.push(props.schedules[scheduleKey])
         : null;
     });
-
-    const colorList = {
-      制限なし: "all",
-      プレミアム: "premium",
-      スーパープレミアム: "superPremium",
-    };
 
     return schedules.map((schedule, index) => {
       let circle;
@@ -47,15 +43,32 @@ const Schedule = (props) => {
 
       return (
         <Box key={index}>
-          <Button
-            className={classes.ScheduleBtn}
-            onClick={(event) => showSchedule(event, schedule, day, index)}
-          >
-            {circle}
-            <p
-              style={{ margin: "0", fontSize: "12px" }}
-            >{`${schedule.startTime} ${schedule.title}`}</p>
-          </Button>
+          {schedule.plan === "holiday" ? (
+            <Button
+              style={{
+                width: "100%",
+                backgroundColor: "green",
+                color: "white",
+                padding: "2px",
+                marginTop: "4px",
+                fontSize: "12px",
+              }}
+              onClick={(event) => showSchedule(event, schedule, day, index)}
+            >
+              {schedule.title}
+            </Button>
+          ) : (
+            <Button
+              className={classes.ScheduleBtn}
+              style={{ padding: "4px 8px" }}
+              onClick={(event) => showSchedule(event, schedule, day, index)}
+            >
+              {circle}
+              <p
+                style={{ margin: "0", fontSize: "12px" }}
+              >{`${schedule.startTime} ${schedule.title}`}</p>
+            </Button>
+          )}
         </Box>
       );
     });

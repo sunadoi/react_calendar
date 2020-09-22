@@ -101,7 +101,7 @@ const Navbar = (props) => {
             >
               <p style={{ marginTop: "0", marginRight: "4px" }}>🔴</p>
               {/* <LabelIcon className={classes.SuperPremiumIcon} /> */}
-              <div>スーパープレミアム以上限定</div>
+              <div>スーパープレミアム限定</div>
             </Box>
           </li>
         </ul>
