@@ -1,7 +1,16 @@
 .UpdateSchedule {
   background-color: white;
   padding: 8px;
-  height: 300px;
-  width: 400px;
+  height: 550px;
+  width: 500px;
   border-radius: 10px;
+}
+
+.ScheduleItem {
+  margin-top: 32px;
+  align-items: center;
+}
+
+.Icon {
+  margin-right: 16px;
 }
