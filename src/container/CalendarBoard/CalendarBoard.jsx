@@ -34,7 +34,7 @@ const CalendarBoard = (props) => {
 
           return (
             <li key={dayIndex}>
-              <p style={{color: weekColor}}>{day}</p>
+              <p style={{ color: weekColor }}>{day}</p>
             </li>
           );
         })}

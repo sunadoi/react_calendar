@@ -18,6 +18,7 @@ import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 
 import Modal from "../../components/UI/Modal/Modal";
 import StyeledDatePicker from "../../components/UI/DatePicker/DatePicker";
+import { formatDate } from "../../helpers/formatDate";
 import classes from "./AddSchedule.module.scss";
 
 import { connect } from "react-redux";
@@ -27,6 +28,7 @@ const AddSchedule = (props) => {
   const [schedule, setSchedule] = useState({
     title: "",
     date: new Date(),
+    repeat: 0,
     startTime: "21:00",
     endTime: "22:00",
     plan: "all",
@@ -69,10 +71,10 @@ const AddSchedule = (props) => {
     "23:30",
   ];
 
+  const repeatCount = [0, 1, 2, 3, 4];
+
   useEffect(() => {
-    const date = `${props.selectedDay.getFullYear()}年${
-      props.selectedDay.getMonth() + 1
-    }月${props.selectedDay.getDate()}日`;
+    const date = formatDate(props.selectedDay);
     setSchedule({ ...schedule, date: date });
     setSelectedDate(props.selectedDay);
   }, []);
@@ -109,14 +111,14 @@ const AddSchedule = (props) => {
       return;
     }
 
-    props.addSchedule(schedule);
+    props.addSchedule(schedule, selectedDate);
     props.closeModal();
   };
 
   const dialogContent = (
     <DialogContent>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+      <Box display="flex" width="90%" className={classes.ScheduleItem}>
         <TitleIcon className={classes.Icon} />
         <TextField
           autoFocus
@@ -129,12 +131,28 @@ const AddSchedule = (props) => {
           onChange={(event) => onChangeHandler(event, "title")}
         />
       </Box>
-      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+      <Box display="flex" width="100%" className={classes.ScheduleItem}>
         <CalendarTodayIcon className={classes.Icon} />
         <StyeledDatePicker
           selectedDate={selectedDate}
           dateChangeHandler={dateChangeHandler}
         />
+        <Box display="flex" alignItems="center" style={{ marginLeft: "40px" }}>
+          <p>繰り返し: </p>
+          <Select
+            value={schedule.repeat}
+            style={{ width: "80px", marginLeft: "8px", paddingTop: "4px" }}
+            onChange={(event) => onChangeHandler(event, "repeat")}
+          >
+            {repeatCount.map((count) => {
+              return (
+                <MenuItem key={count} value={count}>
+                  {count === 0 ? "しない" : `${count}回`}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </Box>
       </Box>
       <Box display="flex" width="80%" className={classes.ScheduleItem}>
         <AccessTimeIcon className={classes.Icon} />
@@ -182,7 +200,7 @@ const AddSchedule = (props) => {
           onChange={(event) => onChangeHandler(event, "owner")}
         />
       </Box>
-      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+      <Box display="flex" width="90%" className={classes.ScheduleItem}>
         <SubjectIcon className={classes.Icon} />
         <TextField
           placeholder="説明を追加"
@@ -236,7 +254,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     closeModal: () => dispatch(actions.closeModal()),
-    addSchedule: (schedule) => dispatch(actions.addSchedule(schedule)),
+    addSchedule: (schedule, selectedDate) =>
+      dispatch(actions.addSchedule(schedule, selectedDate)),
   };
 };
 

@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-schedules";
 import { openErrorModal } from "./showModal";
+import { formatDate } from "../../helpers/formatDate";
 
 export const setSchedules = (schedules) => {
   const orderedSchedules = Object.keys(schedules).map((scheduleKey) => {
@@ -49,13 +50,35 @@ export const fetchSchedules = () => {
   };
 };
 
-export const addSchedule = (schedule) => {
+export const addSchedule = (schedule, selectedDate) => {
   return async (dispatch) => {
     if (schedule.title === "") {
       schedule.title = "(タイトルなし)";
     }
     try {
-      await axios.post(`${process.env.REACT_APP_FIREBASE_URL}/schedules.json`, schedule);
+      const repeatSchedulesList = [];
+      for (let i = 0; i <= schedule.repeat; i++) {
+        const copyDate = new Date(selectedDate);
+        const repeatDate = new Date(
+          copyDate.setDate(copyDate.getDate() + 7 * i)
+        );
+        const formatRepeatDate = formatDate(repeatDate);
+        const repeatSchedule = { ...schedule, date: formatRepeatDate };
+        repeatSchedulesList.push(repeatSchedule);
+      }
+
+      await Promise.all(
+        repeatSchedulesList.map((schedule) => {
+          return new Promise((resolve, reject) => {
+            resolve(
+              axios.post(
+                `${process.env.REACT_APP_FIREBASE_URL}/schedules.json`,
+                schedule
+              )
+            );
+          });
+        })
+      );
       dispatch(fetchSchedules());
     } catch (error) {
       dispatch(errorSchedule(error));
