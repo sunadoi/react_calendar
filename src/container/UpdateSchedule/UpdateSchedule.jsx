@@ -71,7 +71,10 @@ const UpdateSchedule = (props) => {
   ];
 
   useEffect(() => {
-    const selectedDate = props.selectedSchedule.date.replace("年", "/").replace("月", "/").replace("日", "");
+    const selectedDate = props.selectedSchedule.date
+      .replace("年", "/")
+      .replace("月", "/")
+      .replace("日", "");
     setSelectedDate(new Date(selectedDate));
     setSchedule({ ...props.selectedSchedule });
   }, []);
