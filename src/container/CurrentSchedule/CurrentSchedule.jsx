@@ -7,8 +7,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import CloseIcon from "@material-ui/icons/Close";
 import EditIcon from "@material-ui/icons/Edit";
 import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
+import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
 
 import Modal from "../../components/UI/Modal/Modal";
+import { Plan, returnCircle } from "../../models/Plan";
 import classes from "./CurrentSchedule.module.scss";
 
 import { connect } from "react-redux";
@@ -38,10 +40,14 @@ const CurrentSchedule = (props) => {
     </DialogContent>
   );
 
+  const circle = returnCircle(props.selectedSchedule.plan);
+
   const dialogContent = (
     <DialogContent>
       <div className={classes.content}>
-        <p className={classes.title}>{props.selectedSchedule.title}</p>
+        <p
+          className={classes.title}
+        >{`${circle} ${props.selectedSchedule.title}`}</p>
         {props.selectedSchedule.plan !== "holiday" && (
           <Box
             display="flex"
@@ -68,6 +74,10 @@ const CurrentSchedule = (props) => {
           <p>{props.selectedSchedule.description}</p>
         </Box>
       )}
+      <Box display="flex" alignItems="center" className={classes.plan}>
+        <LabelOutlinedIcon style={{ marginRight: "8px" }} />
+        <p>{Plan[props.selectedSchedule.plan]}</p>
+      </Box>
     </DialogContent>
   );
 

@@ -19,6 +19,7 @@ import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 import Modal from "../../components/UI/Modal/Modal";
 import StyeledDatePicker from "../../components/UI/DatePicker/DatePicker";
 import { formatDate } from "../../helpers/formatDate";
+import { Plan } from "../../models/Plan";
 import classes from "./AddSchedule.module.scss";
 
 import { connect } from "react-redux";
@@ -220,9 +221,9 @@ const AddSchedule = (props) => {
           style={{ width: "200px" }}
           onChange={(event) => onChangeHandler(event, "plan")}
         >
-          <MenuItem value="all">全員参加可</MenuItem>
-          <MenuItem value="premium">プレミアム以上限定</MenuItem>
-          <MenuItem value="superPremium">スーパープレミアム限定</MenuItem>
+          <MenuItem value="all">{Plan.all}</MenuItem>
+          <MenuItem value="premium">{Plan.premium}</MenuItem>
+          <MenuItem value="superPremium">{Plan.superPremium}</MenuItem>
         </Select>
       </Box>
     </DialogContent>
