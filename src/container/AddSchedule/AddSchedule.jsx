@@ -118,7 +118,7 @@ const AddSchedule = (props) => {
   const dialogContent = (
     <DialogContent>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <Box display="flex" width="90%" className={classes.ScheduleItem}>
+      <Box display="flex" width="95%" className={classes.ScheduleItem}>
         <TitleIcon className={classes.Icon} />
         <TextField
           autoFocus
@@ -137,7 +137,7 @@ const AddSchedule = (props) => {
           selectedDate={selectedDate}
           dateChangeHandler={dateChangeHandler}
         />
-        <Box display="flex" alignItems="center" style={{ marginLeft: "40px" }}>
+        <Box display="flex" alignItems="center" style={{ marginLeft: "64px" }}>
           <p>繰り返し: </p>
           <Select
             value={schedule.repeat}
@@ -200,7 +200,7 @@ const AddSchedule = (props) => {
           onChange={(event) => onChangeHandler(event, "owner")}
         />
       </Box>
-      <Box display="flex" width="90%" className={classes.ScheduleItem}>
+      <Box display="flex" width="95%" className={classes.ScheduleItem}>
         <SubjectIcon className={classes.Icon} />
         <TextField
           placeholder="説明を追加"
@@ -232,12 +232,16 @@ const AddSchedule = (props) => {
     <Modal>
       <form className={classes.AddSchedule}>
         {dialogContent}
-        <DialogActions>
-          <Button onClick={() => props.closeModal()} color="primary">
-            戻る
-          </Button>
-          <Button onClick={() => onSubmitHandler()} color="primary">
+        <DialogActions style={{ marginRight: "32px" }}>
+          <Button
+            onClick={() => onSubmitHandler()}
+            variant="contained"
+            color="primary"
+          >
             保存
+          </Button>
+          <Button onClick={() => props.closeModal()} variant="contained">
+            戻る
           </Button>
         </DialogActions>
       </form>

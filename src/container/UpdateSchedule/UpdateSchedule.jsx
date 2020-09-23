@@ -122,7 +122,7 @@ const UpdateSchedule = (props) => {
   const dialogContent = (
     <DialogContent>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+      <Box display="flex" width="95%" className={classes.ScheduleItem}>
         <TitleIcon className={classes.Icon} />
         <TextField
           autoFocus
@@ -188,7 +188,7 @@ const UpdateSchedule = (props) => {
           onChange={(event) => onChangeHandler(event, "owner")}
         />
       </Box>
-      <Box display="flex" width="80%" className={classes.ScheduleItem}>
+      <Box display="flex" width="95%" className={classes.ScheduleItem}>
         <SubjectIcon className={classes.Icon} />
         <TextField
           placeholder="説明を追加"
@@ -220,12 +220,16 @@ const UpdateSchedule = (props) => {
     <Modal>
       <form className={classes.UpdateSchedule}>
         {dialogContent}
-        <DialogActions>
-          <Button onClick={() => onCloseHandler()} color="primary">
-            戻る
-          </Button>
-          <Button onClick={() => onSubmitHandler()} color="primary">
+        <DialogActions style={{ marginRight: "32px" }}>
+          <Button
+            onClick={() => onSubmitHandler()}
+            variant="contained"
+            color="primary"
+          >
             変更
+          </Button>
+          <Button onClick={() => onCloseHandler()} variant="contained">
+            戻る
           </Button>
         </DialogActions>
       </form>
