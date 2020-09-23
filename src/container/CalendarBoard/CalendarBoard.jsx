@@ -28,9 +28,13 @@ const CalendarBoard = (props) => {
     return (
       <ul className={classes.WeekDay}>
         {weekDay.map((day, dayIndex) => {
+          let weekColor = "black";
+          if (day === "土") weekColor = "blue";
+          if (day === "日") weekColor = "red";
+
           return (
             <li key={dayIndex}>
-              <p>{day}</p>
+              <p style={{color: weekColor}}>{day}</p>
             </li>
           );
         })}
