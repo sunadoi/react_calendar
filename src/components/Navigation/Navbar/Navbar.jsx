@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Plan } from "../../../models/Plan";
 import classes from "./Navbar.module.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
 
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import LabelIcon from "@material-ui/icons/Label";
+
 import { Button, Box } from "@material-ui/core";
 import "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
@@ -79,7 +80,7 @@ const Navbar = (props) => {
             >
               <p style={{ marginTop: "0", marginRight: "4px" }}>🔵</p>
               {/* <LabelIcon className={classes.AllIcon} /> */}
-              <div>全員参加可</div>
+              <div>{Plan.all}</div>
             </Box>
           </li>
           <li>
@@ -90,7 +91,7 @@ const Navbar = (props) => {
             >
               <p style={{ marginTop: "0", marginRight: "4px" }}>🟢</p>
               {/* <LabelIcon className={classes.PremiumIcon} /> */}
-              <div>プレミアム以上限定</div>
+              <div>{Plan.premium}</div>
             </Box>
           </li>
           <li>
@@ -101,7 +102,7 @@ const Navbar = (props) => {
             >
               <p style={{ marginTop: "0", marginRight: "4px" }}>🔴</p>
               {/* <LabelIcon className={classes.SuperPremiumIcon} /> */}
-              <div>スーパープレミアム限定</div>
+              <div>{Plan.superPremium}</div>
             </Box>
           </li>
         </ul>

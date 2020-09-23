@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Box } from "@material-ui/core";
+import { returnCircle } from "../../models/Plan";
 
 import * as actions from "../../store/actions/index";
 import classes from "./Schedule.module.scss";
@@ -28,18 +29,10 @@ const Schedule = (props) => {
     });
 
     return schedules.map((schedule, index) => {
-      let circle;
-      switch (schedule.plan) {
-        case "all":
-          circle = <p style={{ marginTop: "0", marginRight: "4px" }}>🔵</p>;
-          break;
-        case "premium":
-          circle = <p style={{ marginTop: "0", marginRight: "4px" }}>🟢</p>;
-          break;
-        case "superPremium":
-          circle = <p style={{ marginTop: "0", marginRight: "4px" }}>🔴</p>;
-          break;
-      }
+      const circle = returnCircle(schedule.plan);
+      const circleElement = (
+        <p style={{ marginTop: "0", marginRight: "4px" }}>{circle}</p>
+      );
 
       return (
         <Box key={index}>
@@ -63,7 +56,7 @@ const Schedule = (props) => {
               style={{ padding: "4px 8px", textTransform: "none" }}
               onClick={(event) => showSchedule(event, schedule, day, index)}
             >
-              {circle}
+              {circleElement}
               <p
                 style={{ margin: "0", fontSize: "12px" }}
               >{`${schedule.startTime} ${schedule.title}`}</p>
