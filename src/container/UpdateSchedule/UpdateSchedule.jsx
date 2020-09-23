@@ -221,11 +221,15 @@ const UpdateSchedule = (props) => {
       <form className={classes.UpdateSchedule}>
         {dialogContent}
         <DialogActions>
-          <Button onClick={() => onCloseHandler()} color="primary">
-            戻る
-          </Button>
-          <Button onClick={() => onSubmitHandler()} color="primary">
+          <Button
+            onClick={() => onSubmitHandler()}
+            variant="contained"
+            color="primary"
+          >
             変更
+          </Button>
+          <Button onClick={() => onCloseHandler()} variant="contained">
+            戻る
           </Button>
         </DialogActions>
       </form>

@@ -233,11 +233,15 @@ const AddSchedule = (props) => {
       <form className={classes.AddSchedule}>
         {dialogContent}
         <DialogActions>
-          <Button onClick={() => props.closeModal()} color="primary">
-            戻る
-          </Button>
-          <Button onClick={() => onSubmitHandler()} color="primary">
+          <Button
+            onClick={() => onSubmitHandler()}
+            variant="contained"
+            color="primary"
+          >
             保存
+          </Button>
+          <Button onClick={() => props.closeModal()} variant="contained">
+            戻る
           </Button>
         </DialogActions>
       </form>

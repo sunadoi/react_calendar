@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Box } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -15,6 +15,29 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
 const CurrentSchedule = (props) => {
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
+
+  const deleteConfirmContent = (
+    <DialogContent>
+      <p style={{ fontSize: "24px", marginBottom: "24px" }}>
+        この予定を削除しますか？
+      </p>
+      <Box display="flex" justifyContent="flex-end">
+        <Button
+          variant="contained"
+          color="secondary"
+          style={{ marginRight: "16px" }}
+          onClick={() => onDeleteSchedule()}
+        >
+          はい
+        </Button>
+        <Button variant="contained" onClick={() => setDeleteConfirm(false)}>
+          キャンセル
+        </Button>
+      </Box>
+    </DialogContent>
+  );
+
   const dialogContent = (
     <DialogContent>
       <div className={classes.content}>
@@ -60,18 +83,22 @@ const CurrentSchedule = (props) => {
 
   return (
     <Modal>
-      <DialogActions>
+      <DialogActions style={{ marginTop: "16px" }}>
         <Button onClick={() => onEditSchedule()} color="primary">
           <EditIcon />
         </Button>
-        <Button onClick={() => onDeleteSchedule()} color="primary">
+        <Button onClick={() => setDeleteConfirm(true)} color="primary">
           <DeleteIcon />
         </Button>
         <Button onClick={() => props.closeModal()} color="primary">
           <CloseIcon />
         </Button>
       </DialogActions>
-      <div className={classes.CurrentSchedule}>{dialogContent}</div>
+      {deleteConfirm ? (
+        <div className={classes.CurrentSchedule}>{deleteConfirmContent}</div>
+      ) : (
+        <div className={classes.CurrentSchedule}>{dialogContent}</div>
+      )}
     </Modal>
   );
 };
